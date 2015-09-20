@@ -1,0 +1,15 @@
+body {
+  background-color: #DBEDF8;
+  color: #FFFFFF;
+  text-align: center;
+}
+.font-bold {
+  font-weight: bold;
+}
+a {
+  color: #FFFFFF;
+}
+a:hover{
+  color: #2299CC;
+  text-decoration: none;
+}
