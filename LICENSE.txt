@@ -25,11 +25,14 @@ from, out of or in connection with the repository or the use of or other dealing
 
 ===LICENSED SOFTWARE===
 
-Normalize -
-www.shasharala.net/res/css/normalize/LICENSE.md
-
 Bootstrap
 https://github.com/twbs/bootstrap/blob/master/LICENSE
+
+jQuery
+https://jquery.org/license/
+
+Normalize -
+www.shasharala.net/res/css/normalize/LICENSE.md
 
 ==============================================================================
 15/09/20 - This license may change at any time without notice.
