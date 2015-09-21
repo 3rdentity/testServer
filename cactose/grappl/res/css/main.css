@@ -1,3 +1,24 @@
+/* Sticky footer styles
+============================================================================ */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom defined by footer height */
+  margin-bottom: 30px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* The fixed height of the footer */
+  height: 30px;
+  background-color: #000000;
+}
+
+
+
 body {
   background-color: #DBEDF8;
   color: #FFFFFF;
@@ -10,13 +31,16 @@ a:hover{
   color: #2299CC;
   text-decoration: none;
 }
-.font-bold {
-  font-weight: bold;
+nav {
+
 }
-#banner {
-  background-color:#666666;
-  font-size: 120%;
+main {
+  background-color: #6E95D6;
 }
 #logo {
   float: left;
+  margin: -20px 0px 0px 0px;
+}
+#logoTxt {
+  float: right;
 }
