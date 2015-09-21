@@ -1,4 +1,4 @@
-/* Sticky footer styles
+/* Sticky Footer Styles
 ============================================================================ */
 html {
   position: relative;
@@ -19,9 +19,42 @@ footer {
 
 
 
+/* Font Styles
+============================================================================ */
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/res/vendor/Open_Sans/OpenSans-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: normal;
+  font-weight: 700;
+  src:  url(/res/vendor/Open_Sans/OpenSans-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: italic;
+  font-weight: 400;
+  src:  url(/res/vendor/Open_Sans/OpenSans-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: italic;
+  font-weight: 700;
+  src:  url(/res/vendor/Open_Sans/OpenSans-BoldItalic.ttf) format('truetype');
+}
+body {
+  font-family: 'Open Sans', 'Open Sans Fallback',  sans-serif;
+}
+
+
+
+/* Styles
+============================================================================ */
 body {
   background-color: #DBEDF8;
-  color: #FFFFFF;
   text-align: center;
 }
 a {

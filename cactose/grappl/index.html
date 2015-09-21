@@ -1,21 +1,28 @@
 <!DOCTYPE html>
+
+<!--
+===============================================================================
+TERMS: http://grappl.io/terms
+===============================================================================
+-->
+
 <!--
 TODO change all instances of absolute url's to relative url's
-TODO add open sans font
-TODO add cdn's and fallbacks
-TODO CSS3 and styling
-TODO roles
-TODO ARIA
-TODO clean up data in main
+TODO test on server/multiple browsers
+TODO styling
 -->
+
 <html lang='en'>
 
   <head>
 
-    <meta charset="utf-8">
-    <link rel='icon' href='http://grappl.io:888/html/grapplicon.ico' type='image/x-icon'>
+    <meta charset='utf-8'>
+    <meta name='author' content='cactose + shasharala'>
+    <meta name='description' content=''>
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
+    <link rel='icon' type='image/x-icon' href='http://grappl.io:888/html/grapplicon.ico'>
     <link rel='stylesheet' type='text/css' href='res/vendor/normalize.min.css'>
-    <link rel='stylesheet' type='text/css' href='res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href='res/css/main.css'>
     <title>Grappl - You are the cloud now</title>
 
@@ -23,6 +30,8 @@ TODO clean up data in main
 
   <body>
 
+    <!-- Header
+    ======================================================================= -->
     <nav class='navbar navbar-inverse'>
         <div class='navbar-header'>
           <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#theNavbar'>
@@ -37,8 +46,8 @@ TODO clean up data in main
         </div>
         <div class='collapse navbar-collapse' id='theNavbar'>
           <ul class='nav navbar-nav navbar-right'>
-            <li><a href='/login'><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href='/register'><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href='/login.html'><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>
+            <li><a href='/register.html'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>
           </ul>
         </div>
     </nav>
@@ -46,33 +55,49 @@ TODO clean up data in main
     <div class='container'>
       <div class='row'>
 
+        <!-- Content
+        =================================================================== -->
         <main class='col-lg-8'>
             <p>
               Grappl is a tool that lets you host virtually any type of server anywhere, with no port forwarding!
-                <br/>Better yet, it's completely free software, and the client is licensed LGPL v.2.1.
+              <br/>
+              Better yet, it's completely free software, and the client is licensed LGPL v.2.1.
             </p>
             <img src='http://grappl.io:888/html/grapplshot.png'>
             <br/>
-            <span class='font-bold'>How to Run</span>
-            <br/>
-            Start it.
-            <br/>
-            Either log in or choose to be anonymous.
-            <br/>
-            Enter your server's local port number.
-            <br/>
-            The public address will appear in the grappl window.
-              </font>
-            Download Grappl and get hosting:
-            <a href='http://grappl.io:888/html/GrapplLauncher.exe'>Windows</a>
-             - <a href='http://grappl.io:888/html/GrapplLauncher.jar'
-            >OSX & Linux</a>
-            <p><a  href='/donate'>DONATE to help keep grappl online and free!</a>
-              <p><a  href='/status'>Server Statuses</a> --- <a  href='https://github.com/Cactose/Grappl'>Source</a> --- <a  href='/faq'>Help/FAQ</a>
+            <p>
+              How to Run
+              <br/>
+              Start it.
+              <br/>
+              Either log in or choose to be anonymous.
+              <br/>
+              Enter your server's local port number.
+              <br/>
+              The public address will appear in the grappl window.
+            </p>
+            <p>
+              Download Grappl and get hosting:
+              <a href='http://grappl.io:888/html/GrapplLauncher.exe'>Windows</a>
+              -
+              <a href='http://grappl.io:888/html/GrapplLauncher.jar'>OSX & Linux</a>
+            </p>
+            <p>
+              <a href='/donate'>DONATE to help keep grappl online and free!</a>
+            </p>
+            <p>
+              <a href='/status'>Server Statuses</a>
+              ---
+              <a href='https://github.com/Cactose/Grappl'>Source</a>
+              ---
+              <a href='/faq'>Help/FAQ</a>
+            </p>
         </main>
 
+        <!-- Twitter Widget
+        =================================================================== -->
         <section class='col-lg-4'>
-          <a class="twitter-timeline" href="https://twitter.com/Cactose" data-widget-id="616471055713083392">Tweets by @Cactose</a>
+          <a class='twitter-timeline' href='https://twitter.com/Cactose' data-widget-id='616471055713083392'>Tweets by @Cactose</a>
             <script>
               ! function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0],
@@ -80,19 +105,21 @@ TODO clean up data in main
                 if (!d.getElementById(id)) {
                   js = d.createElement(s);
                   js.id = id;
-                  js.src = p + "://platform.twitter.com/widgets.js";
+                  js.src = p + '://platform.twitter.com/widgets.js';
                   fjs.parentNode.insertBefore(js, fjs);
                 }
-              }(document, "script", "twitter-wjs");
+              }(document, 'script', 'twitter-wjs');
             </script>
         </section>
 
       </div>
     </div>
 
+    <!-- Footer
+    ======================================================================= -->
     <footer>
       <div class='container'>
-        <a href='/terms'>terms</a>
+        <a href='/terms.html'>terms</a>
         <a href='mailto:matt@daexsys.com'>report abuse</a>
       </div>
     </footer>
@@ -101,9 +128,23 @@ TODO clean up data in main
 
     <!-- JavaScript
     ===========================================================================
-    Placed at the end of the document so the page load faster -->
-    <script src='res/vendor/jquery-2.1.4.min.js'></script>
-    <script src='res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js'></script>
+    Placed at the end of the document so the page loads faster -->
+    <!-- jQuery CDN Fallback-->
+    <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script>window.jQuery || document.write('<script src="/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
+
+    <!-- Bootstrap CDN Fallback -->
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script>window.jQuery.fn.modal || document.write('<script src="/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
+    <script>
+        (function($) {
+            $(function() {
+                if ($('html').css('font-family') !== 'sans-serif') {
+                    $('head').append('<link rel="stylesheet" href="/res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css">');
+                }
+            });
+        })(window.jQuery);
+    </script>
 
   </body>
 
