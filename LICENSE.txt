@@ -34,6 +34,9 @@ https://jquery.org/license/
 Normalize -
 www.shasharala.net/res/css/normalize/LICENSE.md
 
+Open Sans
+http://www.grappl.io/res/vendor/Open_Sans/LICENSE.txt
+
 ==============================================================================
 15/09/20 - This license may change at any time without notice.
 ==============================================================================
