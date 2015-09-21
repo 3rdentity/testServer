@@ -3,13 +3,20 @@ body {
   color: #FFFFFF;
   text-align: center;
 }
-.font-bold {
-  font-weight: bold;
-}
 a {
   color: #FFFFFF;
 }
 a:hover{
   color: #2299CC;
   text-decoration: none;
+}
+.font-bold {
+  font-weight: bold;
+}
+#banner {
+  background-color:#666666;
+  font-size: 120%;
+}
+#logo {
+  float: left;
 }
