@@ -14,7 +14,6 @@ footer {
   width: 100%;
   /* The fixed height of the footer */
   height: 30px;
-  background-color: #000000;
 }
 
 
@@ -52,23 +51,48 @@ body {
 
 
 /* Styles
-============================================================================ */
+===============================================================================
+Palette #1 - Too light
+  Base = hsl(200, 78%, 72%)
+  Shade 1 = hsl(199, 91%, 95%)
+  Shade 2 = hsl(200, 86%, 83%)
+  Shade 3 = hsl(201, 69%, 62%)
+  Shade 4 = hsl(201, 58%, 51%)
+
+Palette #2
+  shade 0 = #0A435F
+  shade 1 = #086794
+  shade 2 = #0D5376
+  shade 3 = #032E43
+  shade 4 = #021B27
+*/
 body {
-  background-color: #DBEDF8;
+  background-color: #086794;
   text-align: center;
 }
 a {
-  color: #FFFFFF;
+  color: #021B27;
 }
 a:hover{
-  color: #2299CC;
+  color: #086794;
   text-decoration: none;
 }
 nav {
-
+  background-color: #0A435F;
+}
+nav a, .navbar .navbar-nav > li > a, .navbar .navbar-nav > li > a {
+  transition: color 0.5s ease;
+  color: #021B27;
+}
+nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+  color: #086794;
+  background-color: #021B27;
 }
 main {
-  background-color: #6E95D6;
+
+}
+footer {
+  color: #021B27;
 }
 #logo {
   float: left;
