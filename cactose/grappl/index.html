@@ -13,6 +13,7 @@ TODO styling
 TODO carousel for images
 TODO lightbox for login/register/terms
 TODO color container bg?
+TODO draggable false
 -->
 
 <html lang='en'>
@@ -32,6 +33,76 @@ TODO color container bg?
   </head>
 
   <body>
+
+    <!-- Modals
+    ===========================================================================
+    Placed at the beginning of the document to avoid being affected by other
+    components -->
+    <div id='modalRegister' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <h4 class='modal-title'>Register</h4>
+          </div>
+          <div class='modal-body'>
+            <form>
+              <input type='text' name='user' placeholder='Username'>
+              <br>
+              <input type='password' name='pass' placeholder='Password'>
+              <br>
+              <input type='password' name='pass2' placeholder='Confirm password'>
+              <br>
+            </form>
+          </div>
+          <div class='modal-footer'>
+            <p hidden></p>
+            <button class='btn btn-success' id='submitRegister'>Submit</button>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalLogin' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <h4 class='modal-title'>Login</h4>
+          </div>
+          <div class='modal-body'>
+            <form>
+              <input type='text' name='user' placeholder='Username'>
+              <br>
+              <input type='password' name='pass' placeholder='Password'>
+              <br>
+            </form>
+          </div>
+          <div class='modal-footer'>
+            <button class='btn btn-success' id='submitLogin'>Submit</button>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalTerms' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <h4 class='modal-title'>Modal Header</h4>
+          </div>
+          <div class='modal-body'>
+            <p>Some text in the modal.</p>
+          </div>
+          <div class='modal-footer'>
+            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Header
     ======================================================================= -->
@@ -56,67 +127,6 @@ TODO color container bg?
           </ul>
         </div>
     </nav>
-
-    <!-- Modals
-    ======================================================================= -->
-    <div id='modalRegister' class='modal fade'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
-            <h4 class='modal-title'>Register</h4>
-          </div>
-          <div class='modal-body'>
-            <form action='registerhandler' method='post'>
-              <input type='text' placeholder='username' name='user'>
-              <br>
-              <input type='password' placeholder='password' name='pass'>
-              <br>
-              <input type='password' placeholder='confirm password' name='pass2'>
-              <br>
-              <input type='submit' value='Register'>
-            </form>
-          </div>
-          <div class='modal-footer'>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id='modalLogin' class='modal fade'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
-            <h4 class='modal-title'>Modal Header</h4>
-          </div>
-          <div class='modal-body'>
-            <p>Some text in the modal.</p>
-          </div>
-          <div class='modal-footer'>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id='modalTerms' class='modal fade'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
-            <h4 class='modal-title'>Modal Header</h4>
-          </div>
-          <div class='modal-body'>
-            <p>Some text in the modal.</p>
-          </div>
-          <div class='modal-footer'>
-            <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class='container'>
       <div class='row'>
@@ -183,6 +193,7 @@ TODO color container bg?
       </div>
     </div>
 
+    <!--TODO make a modal that pulls from an external source -->
     <!-- Footer
     ======================================================================= -->
     <footer>
@@ -218,6 +229,45 @@ TODO color container bg?
             });
             $('#btnLogin').click(function(){
               $('#modalLogin').modal('show');
+            });
+            $('#submitRegister').click(function(){
+               $.ajax({
+                  type: 'POST',
+                  url: 'registerhandler',
+                  data: $('#modalRegister form').serialize(),
+                  success: function(msg){
+                    $('#modalRegister p').html(msg)
+                      .fadeIn()
+                      .delay(3000)
+                      .fadeOut();
+                  },
+                  error: function(){
+                    $('#modalRegister p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                      .fadeIn()
+                      .delay(3000)
+                      .fadeOut();
+                  }
+                });
+            });
+            $('#submitLogin').click(function(){
+               $.ajax({
+                  type: 'POST',
+                  url: 'http://grappl.io/auth',
+                  data: $('#modalLogin form').serialize(),
+                  success: function(msg){
+                    $('#modalLogin p').html(msg)
+                      .fadeIn(function CBLogin() {
+                        $("#modalLogin").modal('fadeOut');
+                        //TODO AJAX on header to update to a logged in header or redirect to login page
+                      });
+                  },
+                  error: function(){
+                    $('#modalLogin p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                      .fadeIn()
+                      .delay(3000)
+                      .fadeOut();
+                  }
+                });
             });
         })(window.jQuery);
     </script>

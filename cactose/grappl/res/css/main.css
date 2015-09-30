@@ -66,6 +66,12 @@ Palette #2
   shade 3 = #032E43
   shade 4 = #021B27
 */
+
+
+
+[hidden] {
+  display: none;
+}
 ::-moz-selection {
   background-color: #DEDEDE;
   color: #B4A62B;
