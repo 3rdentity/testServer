@@ -66,6 +66,14 @@ Palette #2
   shade 3 = #032E43
   shade 4 = #021B27
 */
+::-moz-selection {
+  background-color: #DEDEDE;
+  color: #B4A62B;
+}
+::selection {
+  background-color: #DEDEDE;
+  color: #010101;
+}
 body {
   background-color: #086794;
   text-align: center;
