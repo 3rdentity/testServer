@@ -1,0 +1,84 @@
+    <!-- Footer
+    ======================================================================= -->
+    <footer>
+      <div class='container'>
+        <a id='license'>License</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='mailto:matt@daexsys.com'>Contact: matt@daexsys.com</a>
+      </div>
+    </footer>
+
+
+
+    <!-- JavaScript
+    ===========================================================================
+    Placed at the end of the document so the page loads faster -->
+    <!-- jQuery CDN Fallback-->
+    <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script>window.jQuery || document.write('<script src="/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
+
+    <!-- BootstrapJS CDN Fallback -->
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script>window.jQuery.fn.modal || document.write('<script src="/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
+    <script>
+        (function($) {
+            $(function() {
+              // BootstrapCSS CDN Fallback
+                if ($('html').css('font-family') !== 'sans-serif') {
+                    $('head').append('<link rel="stylesheet" href="/res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css">');
+                }
+            });
+            // Event Listeners
+            $('#btnRegister').click(function(){
+              $('#modalRegister').modal('show');
+            });
+            $('#btnLogin').click(function(){
+              $('#modalLogin').modal('show');
+            });
+            $('#license').click(function(){
+              $('#modalLicense').modal('show');
+            });
+            $('#submitRegister').click(function(){
+               $.ajax({
+                  type: 'POST',
+                  url: 'registerhandler',
+                  data: $('#modalRegister form').serialize(),
+                  success: function(msg){
+                    $('#modalRegister p').html(msg)
+                      .fadeIn()
+                      .delay(3000)
+                      .fadeOut();
+                  },
+                  error: function(){
+                    $('#modalRegister p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                      .fadeIn()
+                      .delay(3000)
+                      .fadeOut();
+                  }
+                });
+            });
+            $('#submitLogin').click(function(){
+               $.ajax({
+                  type: 'POST',
+                  url: 'auth',
+                  data: $('#modalLogin form').serialize(),
+                  success: function(msg){
+                    $('#modalLogin p').html(msg)
+                      .fadeIn()
+                      .delay(1000, function CBLogin() {
+                        //TODO set document.cookie and redirect to /account
+                      });
+                  },
+                  error: function(){
+                    $('#modalLogin p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                      .fadeIn()
+                      .delay(3000)
+                      .fadeOut();
+                  }
+                });
+            });
+        })(window.jQuery);
+    </script>
+
+  </body>
+
+</html>
