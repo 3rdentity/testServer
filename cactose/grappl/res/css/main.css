@@ -72,6 +72,10 @@ Palette #2
 [hidden] {
   display: none;
 }
+[draggable='false'] {
+  -khtml-user-drag: none;
+  -webkit-user-drag: none;
+}
 ::-moz-selection {
   background-color: #DEDEDE;
   color: #B4A62B;
@@ -81,32 +85,32 @@ Palette #2
   color: #010101;
 }
 body {
-  background-color: #086794;
+  background-color: hsl(199, 91%, 95%);
   text-align: center;
 }
 a {
-  color: #021B27;
+  color: hsl(201, 58%, 51%);
 }
 a:hover{
-  color: #086794;
+  color: hsl(199, 91%, 95%);
   text-decoration: none;
 }
 nav {
-  background-color: #0A435F;
+  background-color: hsl(200, 78%, 72%);
 }
-nav a, .navbar .navbar-nav > li > a, .navbar .navbar-nav > li > a {
+nav a, .navbar .navbar-nav > li > a {
   transition: color 0.5s ease;
-  color: #021B27;
+  color: hsl(201, 58%, 51%);
 }
 nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
-  color: #086794;
-  background-color: #021B27;
+  color: hsl(199, 91%, 95%);
+  background-color: hsl(201, 58%, 51%);
 }
 main {
 
 }
 footer {
-  color: #021B27;
+  color: hsl(201, 58%, 51%);
 }
 #logo {
   float: left;
@@ -114,4 +118,12 @@ footer {
 }
 #logoTxt {
   float: right;
+}
+/* Carousel IMG Centering */
+.carousel-inner {
+  height: 600px;
+}
+.carousel-inner > .item > img {
+    margin: auto;
+    padding-top: 150px;
 }
