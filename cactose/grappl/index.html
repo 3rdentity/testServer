@@ -1,26 +1,5 @@
 <!DOCTYPE html>
 
-<!--
-===============================================================================
-TERMS:
-Do not use Grappl to transmit any copyrighted material that you do not have the right to transmit.
-Do not use Grappl to do anything illegal.
-
-You are responsible for what you use this service for.
-
-There is no uptime guarantee.
-===============================================================================
--->
-
-<!--
-TODO change all instances of absolute url's to relative url's
-TODO test on server/multiple browsers
-TODO styling
-TODO color container bg?
-TODO draggable false?
-TODO sr-only on forms
--->
-
 <html lang='en'>
 
   <head>
@@ -127,17 +106,39 @@ TODO sr-only on forms
         <div class='collapse navbar-collapse' id='theNavbar'>
           <ul class='nav navbar-nav navbar-right'>
             <!--TODO fix cursor-->
-            <li><a id='btnRegister'><span class='glyphicon glyphicon-user'></span> Register</a></li>
-            <li><a id='btnLogin'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>
+            <li><a href='/'><span class='glyphicon glyphicon-home'></span> Home</a></li>
+            <li><a href='/donate'><span class='glyphicon glyphicon-heart'></span> Donate</a></li>
+            <li class='dropdown'>
+              <a class='dropdown-toggle' data-toggle='dropdown'>
+                <span class='glyphicon glyphicon-download-alt'></span> Download
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a href='http://grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
+                <li><a href='http://grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
+              </ul>
+            </li>
+            <li class='dropdown'>
+              <a class='dropdown-toggle' data-toggle='dropdown'>
+                <span class='glyphicon glyphicon-user'></span> Account
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a id='btnRegister'>Register</a></li>
+                <li><a id='btnLogin'>Login</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
     </nav>
 
+
+
+    <!-- Content
+    ======================================================================= -->
     <div style='background-color: hsla(200, 66%, 49%, 0.55)' class='container'>
       <div class='row'>
 
-        <!-- Content
-        =================================================================== -->
         <main class='col-lg-12'>
             <p>
               Grappl is a tool that lets you host virtually any type of server anywhere, with no port forwarding!
@@ -239,6 +240,8 @@ TODO sr-only on forms
 
       </div>
     </div>
+
+
 
     <!-- Footer
     ======================================================================= -->

@@ -106,10 +106,8 @@ nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:fo
   color: hsl(199, 91%, 95%);
   background-color: hsl(201, 58%, 51%);
 }
-main {
-
-}
 footer {
+  background-color: hsl(200, 78%, 72%);
   color: hsl(201, 58%, 51%);
 }
 #logo {
