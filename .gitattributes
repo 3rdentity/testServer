@@ -9,8 +9,10 @@
 *.js text
 *.map text
 
-#These images will be treated as binary
+#These files are binary and will not be normalized
 *.jpg binary
 *.jpeg binary
 *.png binary
 *.gif binary
+
+*.ttf binary
