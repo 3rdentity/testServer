@@ -68,7 +68,6 @@ Palette #2
 */
 
 
-
 [hidden] {
   display: none;
 }
@@ -116,6 +115,29 @@ footer {
 }
 #logoTxt {
   float: right;
+}
+#modalLicense .modal-body {
+  text-align: left;
+}
+#modalLicense .modal-body ul, #modalLicense .modal-body h4 {
+  text-align: center;
+  list-style-type: none;
+}
+.navbar-toggle {
+  background-color: hsl(196, 47%, 20%);
+  border-color: hsl(196, 46%, 32%);
+}
+.navbar-toggle:hover {
+  background-color: hsl(196, 46%, 32%);
+}
+.navbar-toggle .icon-bar {
+  background-color: hsl(0, 0%, 87%);
+}
+.dropdown {
+  cursor: pointer;
+}
+.err {
+  float: left;
 }
 /* Carousel IMG Centering */
 .carousel-inner {
