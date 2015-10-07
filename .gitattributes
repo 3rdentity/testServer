@@ -1,0 +1,16 @@
+#This will hopefully catch any text files added to the repository that are not listed below
+* text=auto
+
+#These files are text and will be normalized
+*.txt text
+*.md text
+*.html text
+*.css text
+*.js text
+*.map text
+
+#These images will be treated as binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
