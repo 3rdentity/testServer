@@ -71,10 +71,6 @@ Palette #2
 [hidden] {
   display: none;
 }
-[draggable='false'] {
-  -khtml-user-drag: none;
-  -webkit-user-drag: none;
-}
 ::-moz-selection {
   background-color: #DEDEDE;
   color: #B4A62B;
