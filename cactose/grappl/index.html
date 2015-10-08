@@ -7,11 +7,11 @@
     <meta charset='utf-8'>
     <meta name='author' content='cactose + shasharala'>
     <meta name='description' content=''>
-    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
-    <link rel='icon' type='image/x-icon' href='http://grappl.io:888/html/grapplicon.ico'>
-    <link rel='stylesheet' type='text/css' href='res/vendor/normalize.min.css'>
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href='res/css/main.css'>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
+    <link rel='icon' type='image/x-icon' href='//grappl.io:888/html/grapplicon.ico'>
+    <link rel='stylesheet' type='text/css' href='/res/vendor/normalize.min.css'>
+    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/res/css/main.css'>
     <title>Grappl - You are the cloud now</title>
 
   </head>
@@ -135,8 +135,8 @@
             <hr/>
             <h4>Licensed Software</h4>
             <ul>
-              <li><a href='https://github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
-              <li><a href='https://jquery.org/license/' target='_blank'>jQuery</a></li>
+              <li><a href='//github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
+              <li><a href='//jquery.org/license/' target='_blank'>jQuery</a></li>
               <li><a href='/res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
               <li><a href='/res/vendor/Open_Sans/LICENSE.txt' target='_blank'>/res/vendor/Open_Sans/LICENSE.txt</a></li>
             </ul>
@@ -148,6 +148,8 @@
       </div>
     </div>
 
+
+
     <!-- Header
     ======================================================================= -->
     <nav class='navbar'>
@@ -158,7 +160,7 @@
             <span class='icon-bar'></span>
           </button>
           <a class='navbar-brand' href='/' rel='prefetch'>
-            <img id='logo' src='http://grappl.io:888/html/logo.png' alt='grappl logo' />
+            <img id='logo' src='//grappl.io:888/html/logo.png' alt='grappl logo' />
             <span id='logoTxt'>You are the cloud now</span>
           </a>
         </div>
@@ -205,7 +207,7 @@
 
     <!-- Content
     ======================================================================= -->
-    <div style='background-color: hsla(200, 66%, 49%, 0.55)' class='container'>
+    <div class='container'>
       <div class='row'>
 
         <main class='col-lg-12'>
@@ -244,19 +246,19 @@
           <!-- Wrapper for slides -->
           <div class='carousel-inner' role='listbox'>
             <div class='item active'>
-              <img src='res/img/normalGUI.png' alt='Normal GUI' width='70%'>
+              <img src='/res/img/normalGUI.png' alt='Normal GUI' width='70%'>
             </div>
 
             <div class='item'>
-              <img src='res/img/console.png' alt='Console' width='100%'>
+              <img src='/res/img/console.png' alt='Console' width='100%'>
             </div>
 
             <div class='item'>
-              <img src='res/img/advancedGUI.png' alt='Advanced GUI' width='100%'>
+              <img src='/res/img/advancedGUI.png' alt='Advanced GUI' width='100%'>
             </div>
 
             <div class='item'>
-              <img src='res/img/httpDebug.png' alt='HTTP Debug' width='100%'>
+              <img src='/res/img/httpDebug.png' alt='HTTP Debug' width='100%'>
             </div>
           </div>
 
@@ -310,11 +312,11 @@
     ===========================================================================
     Placed at the end of the document so the page loads faster -->
     <!-- jQuery CDN Fallback-->
-    <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
     <script>window.jQuery || document.write('<script src="/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
 
     <!-- BootstrapJS CDN Fallback -->
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
     <script>window.jQuery.fn.modal || document.write('<script src="/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
     <script>
         (function($) {
@@ -325,101 +327,129 @@
                 }
             });
             // Event Listeners
-            $('#btnDonate').click(function clickDonate() {
+            $('#btnDonate').click(function clickDonate(event) {
+              event.preventDefault();
               $('#modalDonate').modal('show');
             });
             $('#modalDonate').on('shown.bs.modal', function modalDonateFocus() {
               $('#inputDonate').first()
                 .focus();
             })
-            $('#btnRegister').click(function clickRegister() {
+            $('#btnRegister').click(function clickRegister(event) {
+              event.preventDefault();
               $('#modalRegister').modal('show');
             });
             $('#modalRegister').on('shown.bs.modal', function modalRegisterFocus() {
               $('#modalRegister input').first()
                 .focus();
             })
-            $('#btnLogin').click(function clickLogin() {
+            $('#btnLogin').click(function clickLogin(event) {
+              event.preventDefault();
               $('#modalLogin').modal('show');
             });
             $('#modalLogin').on('shown.bs.modal', function modalLoginFocus() {
               $('#modalLogin input').first()
                 .focus();
             })
-            $('#license').click(function clickLicense() {
+            $('#license').click(function clickLicense(event) {
+              event.preventDefault();
               $('#modalLicense').modal('show');
             });
-            $('#submitRegister').click(function submitRegister() {
-               $.ajax({
-                  type: 'POST',
-                  url: '/registerhandler',
-                  data: $('#modalRegister form').serialize(),
-                  success: function(msg) {
-                    $('#modalRegister p').html(msg)
-                      .fadeIn()
-                      .delay(3000)
-                      .fadeOut();
-                  },
-                  error: function submitRegisterError() {
-                    $('#modalRegister p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
-                      .fadeIn()
-                      .delay(3000)
-                      .fadeOut();
-                  }
-                });
+            $('#submitRegister').click(function submitRegister(event) {
+              event.preventDefault();
+              // Confirm that user input is being handled and disable button till user input is processed
+              $('#submitRegister').prop('disabled', true)
+                .html('<span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Submitting...');
+              $.ajax({
+                type: 'POST',
+                url: '/registerhandler',
+                data: $('#modalRegister form').serialize(),
+                success: function(msg) {
+                  $('#modalRegister p').html(msg)
+                    .fadeIn(function returnSubmitControl() {
+                      // User input has been handled so return control to the user and reset the submission button
+                      $('#submitRegister').prop('disabled', false)
+                        .html('Submit');
+                    })
+                    .delay(1500)
+                    .fadeOut();
+                },
+                error: function submitRegisterError() {
+                  $('#modalRegister p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                    .fadeIn(function returnSubmitControl() {
+                      // User input has been handled so return control to the user and reset the submission button
+                      $('#submitRegister').prop('disabled', false)
+                        .html('Submit');
+                    })
+                    .delay(1500)
+                    .fadeOut();
+                }
+              });
             });
-            $('#submitLogin').click(function submitLogin() {
-               $.ajax({
-                  type: 'POST',
-                  url: '/auth',
-                  data: $('#modalLogin form').serialize(),
-                  success: function(msg) {
+            $('#submitLogin').click(function submitLogin(event) {
+              event.preventDefault();
+              // Confirm that user input is being handled and disable button till user input is processed
+              $('#submitLogin').prop('disabled', true)
+                .html('<span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Submitting...');
+              $.ajax({
+                type: 'POST',
+                url: '/auth',
+                data: $('#modalLogin form').serialize(),
+                success: function(msg) {
+                  /*
+                  It is standard for the backend to not inform the user what information exactly they have provided is wrong
+                  In regard to this custom keep responses to a minimum and do not seperate information about username or password
+                  */
+                  switch (msg) {
                     /*
-                    It is standard for the backend to not inform the user what information exactly they have provided is wrong
-                    In regard to this custom keep responses to a minimum and do not seperate information about username or password
+                    This case could be one word and a custom message could be set to $('modalLogin p').html in response
+                    Example:
+                    case 'error':
+                      $('#modalLogin p').html('Incorrect username or password.')
+                        .fadeIn()
+                        .delay(1500)
+                        .fadeOut()
+                      break;
                     */
-                    switch (msg) {
+                    case 'Incorrect username or password.':
+                      $('#modalLogin p').html(msg)
+                        .fadeIn(function returnSubmitControl() {
+                          // User input has been handled so return control to the user and reset the submission button
+                          $('#submitLogin').prop('disabled', false)
+                            .html('Submit');
+                        })
+                        .delay(1500)
+                        .fadeOut();
+                      break;
+                    default:
                       /*
-                      This case could be one word and a custom message could be set to $('modalLogin p').html in response
-                      Example:
-                      case 'error':
-                        $('#modalLogin p').html('Incorrect username or password.')
-                          .fadeIn()
-                          .delay(3000)
-                          .fadeOut()
-                        break;
+                      A login response will contain three parameters in a string:
+                      'msg;cookie;redirecton'
+                      'Welcome, testificatealice;1442846245957;/account'
                       */
-                      case 'Incorrect username or password.':
-                        $('#modalLogin p').html(msg)
-                          .fadeIn()
-                          .delay(3000)
-                          .fadeOut();
-                        break;
-                      default:
-                        /*
-                        A login response will contain three parameters in a string:
-                        'msg;cookie;redirecton'
-                        'Welcome, testificatealice;1442846245957;/account'
-                        */
-                        var arr = msg.split(';');
-                        msg = arr[0]; // Set msg to actual message from response
-                        var c = arr[1] // Set c to cookie provided in response
-                        var r = arr[2] // Set r to redirecton page provided in response
-                        $('#modalLogin p').html(msg)
-                          .fadeIn()
-                          .delay(1000, function CBLogin() {
-                            document.cookie = c; // Set user cookie
-                            window.location.href = r; // Redirect user
-                          });
-                    }
-                  },
-                  error: function submitLoginError() {
-                    $('#modalLogin p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
-                      .fadeIn()
-                      .delay(3000)
-                      .fadeOut();
+                      var arr = msg.split(';');
+                      msg = arr[0]; // Set msg to actual message from response
+                      var c = arr[1] // Set c to cookie provided in response
+                      var r = arr[2] // Set r to redirecton page provided in response
+                      $('#modalLogin p').html(msg)
+                        .fadeIn()
+                        .delay(1000, function CBLogin() {
+                          document.cookie = c; // Set user cookie
+                          window.location.href = r; // Redirect user
+                        });
                   }
-                });
+                },
+                error: function submitLoginError() {
+                  $('#modalLogin p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                    .fadeIn(function returnSubmitControl() {
+                      // User input has been handled so return control to the user and reset the submission button
+                      $('#submitLogin').prop('disabled', false)
+                        .html('Submit');
+                    })
+                    .delay(1500)
+                    .fadeOut();
+                }
+              });
             });
         })(window.jQuery);
     </script>

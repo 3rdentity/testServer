@@ -102,6 +102,7 @@ nav a, .navbar .navbar-nav > li > a {
   color: hsl(201, 58%, 51%);
 }
 nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+  cursor: pointer;
   color: hsl(199, 91%, 95%);
   background-color: hsl(201, 58%, 51%);
 }
@@ -138,6 +139,20 @@ footer {
 }
 .err {
   float: left;
+}
+.glyphicon-spin {
+
+  animation: spin 2s infinite linear;
+}
+@keyframes spin {
+  0% {
+
+    transform: rotate(0deg);
+  }
+  100% {
+
+    transform: rotate(359deg);
+  }
 }
 /* Carousel IMG Centering */
 .carousel-inner {

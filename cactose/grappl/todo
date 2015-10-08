@@ -1,7 +1,4 @@
-change all instances of absolute url's to relative url's
 test on server/multiple browsers
 styling
 color container bg?
 draggable false?
-logged in banner
-connecting identifier while getting response from backend on modals
