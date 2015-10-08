@@ -84,6 +84,7 @@ body {
   text-align: center;
 }
 a {
+  cursor: pointer;
   color: hsl(201, 58%, 51%);
 }
 a:hover{
@@ -101,6 +102,9 @@ nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:fo
   cursor: pointer;
   color: hsl(199, 91%, 95%);
   background-color: hsl(201, 58%, 51%);
+}
+main {
+  margin-bottom: 40px;
 }
 footer {
   background-color: hsl(200, 78%, 72%);
