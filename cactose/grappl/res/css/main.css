@@ -51,41 +51,26 @@ body {
 
 
 /* Styles
-===============================================================================
-Palette #1 - Too light
-  Base = hsl(200, 78%, 72%)
-  Shade 1 = hsl(199, 91%, 95%)
-  Shade 2 = hsl(200, 86%, 83%)
-  Shade 3 = hsl(201, 69%, 62%)
-  Shade 4 = hsl(201, 58%, 51%)
-
-Palette #2
-  shade 0 = #0A435F
-  shade 1 = #086794
-  shade 2 = #0D5376
-  shade 3 = #032E43
-  shade 4 = #021B27
-*/
-
-
+============================================================================ */
 [hidden] {
   display: none;
 }
 ::-moz-selection {
-  background-color: #DEDEDE;
-  color: #B4A62B;
+  background-color: hsl(60, 83%, 42%);
+  color: hsl(196, 75%, 24%);
 }
 ::selection {
-  background-color: #DEDEDE;
+  background-color: hsl(202, 88%, 63%);
   color: #010101;
 }
 body {
-  background-color: hsl(199, 91%, 95%);
+  background-color: hsl(212, 60%, 15%);
   text-align: center;
+  color: hsl(202, 88%, 63%);
 }
 a {
   cursor: pointer;
-  color: hsl(201, 58%, 51%);
+  color: hsl(202, 63%, 48%);
 }
 a:hover{
   color: hsl(199, 91%, 95%);
@@ -95,19 +80,24 @@ nav {
   background-color: hsl(200, 78%, 72%);
 }
 nav a, .navbar .navbar-nav > li > a {
-  transition: color 0.5s ease;
+  transition: border-bottom-color 0.5s ease, color 0.5s ease;
   color: hsl(201, 58%, 51%);
+  border: 1px solid transparent;
+  border-bottom: 3px solid hsl(0, 0%, 13%);
 }
 nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
   cursor: pointer;
   color: hsl(199, 91%, 95%);
-  background-color: hsl(201, 58%, 51%);
+  border-color: hsl(0, 0%, 0%);
+  border-bottom-color: hsl(201, 58%, 51%);
+
 }
 main {
   margin-bottom: 40px;
 }
 footer {
-  background-color: hsl(200, 78%, 72%);
+  border: 1px solid hsl(0, 0%, 6%);
+  background-color: hsl(0, 0%, 13%);
   color: hsl(201, 58%, 51%);
 }
 #logo {
@@ -124,6 +114,9 @@ footer {
   text-align: center;
   list-style-type: none;
 }
+.modal-content {
+  background-color: hsl(212, 60%, 15%);
+}
 .navbar-toggle {
   background-color: hsl(196, 47%, 20%);
   border-color: hsl(196, 46%, 32%);
@@ -132,7 +125,7 @@ footer {
   background-color: hsl(196, 46%, 32%);
 }
 .navbar-toggle .icon-bar {
-  background-color: hsl(0, 0%, 87%);
+  background-color: hsl(202, 63%, 48%);
 }
 .dropdown {
   cursor: pointer;

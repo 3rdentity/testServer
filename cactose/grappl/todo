@@ -1,4 +1,10 @@
-test on server/multiple browsers
 styling
-color container bg?
-pixels? em?
+  - modals
+  - banner
+  - content
+  - imgCarousel
+  - main colours - in progress
+  - fx
+
+test on server/multiple browsers
+modal ui update - caps lock is on warning. put warning in placeholder
