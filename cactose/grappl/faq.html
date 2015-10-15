@@ -1,60 +1,474 @@
-<html>
-<link rel='icon' href='http://grappl.io:888/html/grapplicon.ico' type='image/x-icon'>
-<title>grappl - you are the cloud now</title>
+<!DOCTYPE html>
 
-<body bgcolor='#DBEDF8'>
-  <center>
-    <div style='width:1200px;'>
-      <div style='background-color:#666666; color:#ffffff; font-size: 120%}'>
-        <div style='float:left'>
-          <a href='/' style='text-align:left'>
-            <img src='http://grappl.io:888/html/logo.png'>
+<html lang='en'>
+
+  <head>
+
+    <meta charset='utf-8'>
+    <meta name='author' content='cactose + shasharala'>
+    <meta name='description' content=''>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
+    <link rel='icon' type='image/x-icon' href='//grappl.io:888/html/grapplicon.ico'>
+    <link rel='stylesheet' type='text/css' href='/res/vendor/normalize.min.css'>
+    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/res/css/main.css'>
+    <title>Grappl - You are the cloud now</title>
+
+  </head>
+
+  <body>
+
+    <!-- Modals
+    ===========================================================================
+    Placed at the beginning of the document to avoid being affected by other
+    components -->
+    <div id='modalDonate' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button role='button' type='button' class='close' data-dismiss='modal'>&times;</button>
+            <h4 class='modal-title'>Donate</h4>
+          </div>
+          <div class='modal-body'>
+            You can donate any amount you want, any help is appreciated!
+            If you donate $5 or more and include your username
+            you will be able to alpha test new features, like static ports, which
+            let you keep the same address every time you start Grappl.
+            (Alpha tester status has to be applied manually, so it will take a small amount of time to show up.)
+
+            <!-- PayPal Form -->
+            <form role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+              <input type='hidden' name='cmd' value='_donations' />
+              <input type='hidden' name='business' value='8U9DK42DS2US2' />
+              <input type='hidden' name='lc' value='US' />
+              <input type='hidden' name='item_name' value='Grappl' />
+              <input type='hidden' name='button_subtype' value='services' />
+              <input type='hidden' name='currency_code' value='USD' />
+              <input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted' />
+              <table>
+                <tr>
+                  <td>
+                    <input type='hidden' name='on0' value='Username' />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input id='inputDonate' type='text' name='os0' placeholder='Username' maxlength='100' role='textbox' />
+                  </td>
+                </tr>
+              </table>
+              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
+              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalRegister' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h4 class='modal-title'>Register</h4>
+          </div>
+          <div class='modal-body'>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterUser'>Username</label>
+                <div class="input-group">
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+                </div>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterPass'>Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterPass' class='form-control' type='password' name='pass' maxlength='100' aria-describedby='modalRegisterPassStatus' role='textbox' />
+                </div>
+                <span id='modalRegisterPassStatus' class='sr-only'></span>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterConfirm'>Confirm Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterConfirm' class='form-control' type='password' name='pass2' maxlength='100' aria-describedby='modalRegisterConfirmStatus' role='textbox' />
+                </div>
+                <span id='modalRegisterConfirmStatus' class='sr-only'></span>
+              </div>
+            </form>
+          </div>
+          <div class='modal-footer'>
+            <p class='err'></p>
+            <button role='button' class='btn btn-success' id='submitRegister'>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalLogin' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h4 class='modal-title'>Login</h4>
+          </div>
+          <div class='modal-body'>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginUser'>Username</label>
+                <div class="input-group">
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalLoginUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+                </div>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginPass'>Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalLoginPass' class='form-control' type='password' name='pass' maxlength='100' aria-describedby='modalLoginPassStatus' role='textbox' />
+                </div>
+                <span id='modalLoginPassStatus' class='sr-only'></span>
+              </div>
+          </div>
+          <div class='modal-footer'>
+            <p class='err'></p>
+            <button role='button' class='btn btn-success' id='submitLogin'>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalLicense' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h3 class='modal-title'>License</h3>
+          </div>
+          <div class='modal-body'>
+            <p>Do not use Grappl to transmit any copyrighted material that you do not have the right to transmit.
+            <br />
+            Do not use Grappl to do anything illegal.</p>
+            <p>You are responsible for what you use this service for.</p>
+            <p>There is no uptime guarantee.</p>
+            <hr/>
+            <h4>Licensed Software</h4>
+            <ul>
+              <li><a href='//github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
+              <li><a href='//jquery.org/license/' target='_blank'>jQuery</a></li>
+              <li><a href='/res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
+              <li><a href='/res/vendor/Open_Sans/LICENSE.txt' target='_blank'>/res/vendor/Open_Sans/LICENSE.txt</a></li>
+            </ul>
+          </div>
+          <div class='modal-footer'>
+            Website design by <a href='//www.shasharala.net' rel='author'>shasharala</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Header
+    ======================================================================= -->
+    <nav class='navbar navbar-inverse'>
+        <div class='navbar-header'>
+          <button role='button' type='button' class='navbar-toggle' data-toggle='collapse' data-target='#theNavbar' aria-expanded='false'>
+            <span class="sr-only">Toggle navigation</span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+          <a class='navbar-brand' href='/' rel='prefetch'>
+            <img id='logo' src='//grappl.io:888/html/logo.png' alt='grappl logo' />
+            <span id='logoTxt'>You are the cloud now</span>
           </a>
         </div>
-        <div style='float:right'><b><a href = '/register' style='color:#ffffff;text-decoration:none'>create account</a> - <a href = '/login' style='color:#ffffff;text-decoration:none'>login</a></b></div>
-        <div style='clear:both;'></div>
+        <div class='collapse navbar-collapse' id='theNavbar'>
+          <ul class='nav navbar-nav navbar-right'>
+            <li><a role='button' href='/' rel='prefetch'><span class='glyphicon glyphicon-home'></span> Home</a></li>
+            <li><a role='button' id='btnDonate' href='javascript:void(0)'><span class='glyphicon glyphicon-heart'></span> Donate</a></li>
+            <li class='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
+                <span class='glyphicon glyphicon-download-alt'></span> Download
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
+              </ul>
+            </li>
+            <li class='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
+                <span class='glyphicon glyphicon-user'></span> Account
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a role='button' id='btnRegister' href='javascript:void(0)'>Register</a></li>
+                <li><a role='button' id='btnLogin' href='javascript:void(0)'>Login</a></li>
+              </ul>
+            </li>
+            <li class='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
+                <span class='glyphicon glyphicon-alert'></span> Help
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a role='button' href='/status' rel='prefetch'>Server Status</a></li>
+                <li><a role='button' href='/faq' rel='prefetch'>FAQ</a></li>
+                <li><a role='button' href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+
+
+    <!-- Content
+    ======================================================================= -->
+    <main class='container'>
+      <div class='row'>
+
+        <div class='col-lg-12'>
+          <h1>Frequently Asked Questions</h1>
+          <br />
+          <b>- Why?</b>
+          <br />
+          Because I want to make it easier for people to host servers (particularly game servers), play with friends, and connect with others. I've been particularly frustrated with the state of server hosting, you either have to mess around with
+          port-fowarding (difficult, many routers can't do it) or pay a company $10-$20 a month to host a server. With Grappl, you can put up a server with no hassle, running off your own machine, in a moment.
+          <br />
+          <b>- How does it work?</b>
+          <br />
+          It works by tunnelling data through Grappl relay servers. The exact details are complex, but Grappl isn't built with support for any specific protocol, and just works as a dumb TCP tunnel. That means any application that uses TCP and binds to only one port should work through it.
+          <br />
+          <b>- Is it safe?</b>
+          <br />
+          It's safe. Nothing nefarious is done with data sent through Grappl.
+          <br />
+          You can also view the source code of the client <a style='color:#ffffff' href='//github.com/Cactose/Grappl'>here</a>
+          <br />
+          <b>- What applications/games will it run with?</b>
+          <br />
+          It will run on any game that has a TCP client which accepts alternate ports from the default.
+          <br />
+          This includes Minecraft, Starbound, Terraria, and most other games. It can even be used to host HTTP servers!
+          <br />
+          <b>- How do you pay to keep this running?</b>
+          <br />
+          Donations, and donations alone! Please <a style='color:#ffffff' href='/donate'>donate</a> if you like Grappl. You can alpha test new features if you do!
+          <br />
+          <a href='/roadmap'>development roadmap</a>
+          <br />
+          <b>- How can I set up a MC server with Grappl?</b>
+          <br />
+          This video does a great job of explaining how. The explanation starts at 1:10.
+          <br />
+          <iframe width="560" height="315" src="//www.youtube.com/embed/VJ5DisIQ5g4" frameborder="0" allowfullscreen></iframe>
+          <br />
+          If you want to host a dedicated server, it's a bit more complicated.
+          <br />
+          You have to download the MC server application from minecraft.net, run it, then enter '25565' as the server port into Grappl.
+          <br />
+          <br />
+          <b>- It won't work on my computer, what's wrong?</b>
+          <br />
+          If you don't have Java installed, you need to have that installed.
+          <br />
+          If the application starts, you've let it through your firewall, and you get a public address (but you can't connect to it) any number of things could be wrong, but it's usually just the wrong port was entered.
+          <br />
+          If it's being a total pain, you can contact me on Twitter <a style='color:#ffffff' href='//twitter.com/Cactose'>@Cactose</a> and I'll look into helping you.
+          <br />
+          <b>- Grappl is java? Is there an API?</b>
+          <br />
+          You bet! The documentation is on the github page. It's super simple.
+          <br />
+          <b>- Can I run my own relay servers?</b>
+          <br />
+          Absolutely! Contact me at <a href='mailto:matt@daexsys.com'>matt@daexsys.com</a> and we can work out licensing. The serverside is closed source. Self-hosting a relay server can be preferable, for example, if you are a game dev and are using Grappl for your game's networking through the API. You are still free to use the public relay servers in that scenario, but it may not be preferable.
+        </div>
+
       </div>
-      <p>
-        <center>
-          <div align='center' style='background-color:#6E95D6; width:1200px;'>
-            <div align='center' style='background-color:#3C66AD;' <font color='E5E9FF' face='Open Sans'>
-              <font size='6' face='Open Sans' color='FFFFFF'>grappl
-                <br>
-              </font>
-              <font size='5' face='Open Sans' color='E5E9FF'>you are the cloud now
-                <p>
-            </div>
-            <p>
-              <div align='left' style='color:#FFFFFF'>
-                <h1>Frequently Asked Questions</h1><b>- Why?</b>
-                <br>Because I want to make it easier for people to host servers (particularly game servers), play with friends, and connect with others. I've been particularly frustrated with the state of server hosting, you either have to mess around with
-                port-fowarding (difficult, many routers can't do it) or pay a company $10-$20 a month to host a server. With Grappl, you can put up a server with no hassle, running off your own machine, in a moment.
-                <p><b>- How does it work?</b>
-                  <br>It works by tunnelling data through Grappl relay servers. The exact details are complex, but Grappl isn't built with support for any specific protocol, and just works as a dumb TCP tunnel. That means any application that uses TCP and
-                  binds to only one port should work through it.
-                  <p><b>- Is it safe?</b>
-                    <br>It's safe. Nothing nefarious is done with data sent through Grappl.
-                    <br>You can also view the source code of the client <a style='color:#ffffff' href='//github.com/Cactose/Grappl'>here</a>
-                    <p><b>- What applications/games will it run with?</b>
-                      <br>It will run on any game that has a TCP client which accepts alternate ports from the default.
-                      <br>This includes Minecraft, Starbound, Terraria, and most other games. It can even be used to host HTTP servers!
-                      <p><b>- How do you pay to keep this running?</b>
-                        <br>Donations, and donations alone! Please <a style='color:#ffffff' href='/donate'>donate</a> if you like Grappl. You can alpha test new features if you do!
-                        <br><a href='/roadmap'>development roadmap</a>
-                        <p><b>- How can I set up a MC server with Grappl?</b>
-                          <br>This video does a great job of explaining how. The explanation starts at 1:10.
-                          <br>
-                          <iframe width="560" height="315" src="//www.youtube.com/embed/VJ5DisIQ5g4" frameborder="0" allowfullscreen></iframe>
-                          <br>If you want to host a dedicated server, it's a bit more complicated.
-                          <br>You have to download the MC server application from minecraft.net, run it, then enter '25565' as the server port into Grappl.
-                          <br>
-                          <p><b>- It won't work on my computer, what's wrong?</b>
-                            <br>If you don't have Java installed, you need to have that installed.
-                            <br>If the application starts, you've let it through your firewall, and you get a public address (but you can't connect to it) any number of things could be wrong, but it's usually just the wrong port was entered.
-                            <br>If it's being a total pain, you can contact me on Twitter <a style='color:#ffffff' href='//twitter.com/Cactose'>@Cactose</a> and I'll look into helping you.
-                            <p><b>- Grappl is java? Is there an API?</b>
-                              <br>You bet! The documentation is on the github page. It's super simple.
-                              <p><b>- Can I run my own relay servers?</b>
-                                <br>Absolutely! Contact me at <a href='mailto:matt@daexsys.com'>matt@daexsys.com</a> and we can work out licensing. The serverside is closed source. Self-hosting a relay server can be preferable, for example, if you are a game
-                                dev and are using Grappl for your game's networking through the API. You are still free to use the public relay servers in that scenario, but it may not be preferable.
-                                <p>
+    </main>
+
+
+
+    <!-- Footer
+    ======================================================================= -->
+    <footer>
+      <div class='container'>
+        <a role='button' id='license' href='javascript:void(0)' rel='license'>License</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='mailto:matt@daexsys.com'>Contact: matt@daexsys.com</a>
+      </div>
+    </footer>
+
+
+
+    <!-- JavaScript
+    ===========================================================================
+    Placed at the end of the document so the page loads faster -->
+    <!-- jQuery CDN Fallback-->
+    <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script>window.jQuery || document.write('<script src="/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
+
+    <!-- BootstrapJS CDN Fallback -->
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script>window.jQuery.fn.modal || document.write('<script src="/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
+    <script>
+        (function jQueryAlias($) {
+            $(document).ready(function onReady() {
+              // BootstrapCSS CDN Fallback
+              if ($('html').css('font-family') !== 'sans-serif') {
+                  $('head').append('<link rel="stylesheet" href="/res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css">');
+              }
+
+              // Event Listeners
+              $('#btnDonate').click(function clickDonate(event) {
+                event.preventDefault();
+                $('#modalDonate').modal('show');
+              });
+              $('#modalDonate').on('shown.bs.modal', function modalDonateFocus() {
+                $('#inputDonate').first()
+                  .focus();
+              })
+              $('#btnRegister').click(function clickRegister(event) {
+                event.preventDefault();
+                $('#modalRegister').modal('show');
+              });
+              $('#modalRegister').on('shown.bs.modal', function modalRegisterFocus() {
+                $('#modalRegister input').first()
+                  .focus();
+              })
+              $('#btnLogin').click(function clickLogin(event) {
+                event.preventDefault();
+                $('#modalLogin').modal('show');
+              });
+              $('#modalLogin').on('shown.bs.modal', function modalLoginFocus() {
+                $('#modalLogin input').first()
+                  .focus();
+              })
+              $('#modalRegister, #modalLogin').on('keypress', function capsTest(event) {
+                var s = String.fromCharCode( event.which );
+                if ((s.toUpperCase() === s && s.toLowerCase() !== s && !event.shiftKey) ||
+                (s.toUpperCase() !== s && s.toLowerCase() === s && event.shiftKey)) {
+                  $('#CapsWarn').show();
+                }
+                else if ((s.toLowerCase() === s && s.toUpperCase() !== s && !event.shiftKey) ||
+                (s.toLowerCase() !== s && s.toUpperCase() === s && event.shiftKey)) {
+                  $('#CapsWarn').hide();
+                }
+              });
+              $('#license').click(function clickLicense(event) {
+                event.preventDefault();
+                $('#modalLicense').modal('show');
+              });
+              $('#submitRegister').click(function submitRegister(event) {
+                event.preventDefault();
+                // Confirm that user input is being handled and disable button till user input is processed
+                $('#submitRegister').prop('disabled', true)
+                  .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+                $.ajax({
+                  type: 'POST',
+                  url: '/registerhandler',
+                  data: $('#modalRegister form').serialize(),
+                  success: function(msg) {
+                    $('#modalRegister p').html(msg)
+                      .fadeIn(function returnSubmitControl() {
+                        // User input has been handled so return control to the user and reset the submission button
+                        $('#submitRegister').prop('disabled', false)
+                          .html('Submit');
+                      })
+                      .delay(1500)
+                      .fadeOut();
+                  },
+                  error: function submitRegisterError() {
+                    $('#modalRegister p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                      .fadeIn(function returnSubmitControl() {
+                        // User input has been handled so return control to the user and reset the submission button
+                        $('#submitRegister').prop('disabled', false)
+                          .html('Submit');
+                      })
+                      .delay(1500)
+                      .fadeOut();
+                  }
+                });
+              });
+              $('#submitLogin').click(function submitLogin(event) {
+                event.preventDefault();
+                // Confirm that user input is being handled and disable button till user input is processed
+                $('#submitLogin').prop('disabled', true)
+                  .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+                $.ajax({
+                  type: 'POST',
+                  url: '/auth',
+                  data: $('#modalLogin form').serialize(),
+                  success: function(msg) {
+                    /*
+                    It is standard for the backend to not inform the user what information exactly they have provided is wrong
+                    In regard to this custom keep responses to a minimum and do not seperate information about username or password
+                    */
+                    switch (msg) {
+                      /*
+                      This case could be one word and a custom message could be set to $('modalLogin p').html in response
+                      Example:
+                      case 'error':
+                        $('#modalLogin p').html('Incorrect username or password.')
+                          .fadeIn()
+                          .delay(1500)
+                          .fadeOut()
+                        break;
+                      */
+                      case 'Incorrect username or password.':
+                        $('#modalLogin p').html(msg)
+                          .fadeIn(function returnSubmitControl() {
+                            // User input has been handled so return control to the user and reset the submission button
+                            $('#submitLogin').prop('disabled', false)
+                              .html('Submit');
+                          })
+                          .delay(1500)
+                          .fadeOut();
+                        break;
+                      default:
+                        /*
+                        A login response will contain three parameters in a string:
+                        'msg;cookie;redirecton'
+                        'Welcome, testificatealice;1442846245957;/account'
+                        */
+                        var arr = msg.split(';');
+                        msg = arr[0]; // Set msg to actual message from response
+                        var c = arr[1] // Set c to cookie provided in response
+                        var r = arr[2] // Set r to redirecton page provided in response
+                        $('#modalLogin p').html(msg)
+                          .fadeIn()
+                          .delay(1000, function CBLogin() {
+                            document.cookie = c; // Set user cookie
+                            window.location.href = r; // Redirect user
+                          });
+                    }
+                  },
+                  error: function submitLoginError() {
+                    $('#modalLogin p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                      .fadeIn(function returnSubmitControl() {
+                        // User input has been handled so return control to the user and reset the submission button
+                        $('#submitLogin').prop('disabled', false)
+                          .html('Submit');
+                      })
+                      .delay(1500)
+                      .fadeOut();
+                  }
+                });
+              });
+            });
+        })(window.jQuery);
+    </script>
+
+  </body>
+
+</html>
