@@ -1,9 +1,11 @@
+TODO DIRECTLY BEFORE LAST COMMIT modify local relative links to be //grappl.io/link
+
 styling - in progress
   - modals
   - banner
   - content
   - imgCarousel
-  - main colours - in progress
+  - main colours
   - fx
 
 test on server/multiple browsers
