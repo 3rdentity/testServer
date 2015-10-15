@@ -1,4 +1,4 @@
-styling
+styling - in progress
   - modals
   - banner
   - content
@@ -7,4 +7,13 @@ styling
   - fx
 
 test on server/multiple browsers
-modal ui update - caps lock is on warning. put warning in placeholder
+
+caps lock is on warning - in progress
+
+why waste a user's time querying backend when frontend js could provide errors about:
+passwords do not match - backend responds with page detailing error
+empty password or username - backend hangs eternally
+
+input maxlength? ask cactose
+
+col-lg col-sm col-xs etc

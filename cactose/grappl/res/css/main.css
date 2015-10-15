@@ -50,18 +50,31 @@ body {
 
 
 
+/* Animations
+============================================================================ */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+.spin {
+  animation: spin 2s infinite linear;
+}
+
+
+
 /* Styles
 ============================================================================ */
-[hidden] {
-  display: none;
-}
 ::-moz-selection {
-  background-color: hsl(60, 83%, 42%);
-  color: hsl(196, 75%, 24%);
+  background-color: hsl(202, 88%, 63%);
+  color: hsl(0, 0%, 0%);
 }
 ::selection {
   background-color: hsl(202, 88%, 63%);
-  color: #010101;
+  color: hsl(0, 0%, 0%);
 }
 body {
   background-color: hsl(212, 60%, 15%);
@@ -76,24 +89,21 @@ a:hover{
   color: hsl(199, 91%, 95%);
   text-decoration: none;
 }
-nav {
-  background-color: hsl(200, 78%, 72%);
-}
 nav a, .navbar .navbar-nav > li > a {
   transition: border-bottom-color 0.5s ease, color 0.5s ease;
   color: hsl(201, 58%, 51%);
-  border: 1px solid transparent;
   border-bottom: 3px solid hsl(0, 0%, 13%);
 }
 nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
   cursor: pointer;
   color: hsl(199, 91%, 95%);
-  border-color: hsl(0, 0%, 0%);
   border-bottom-color: hsl(201, 58%, 51%);
 
 }
 main {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  background-color: hsla(0, 0%, 0%, 0.5);
 }
 footer {
   border: 1px solid hsl(0, 0%, 6%);
@@ -117,36 +127,13 @@ footer {
 .modal-content {
   background-color: hsl(212, 60%, 15%);
 }
-.navbar-toggle {
-  background-color: hsl(196, 47%, 20%);
-  border-color: hsl(196, 46%, 32%);
-}
-.navbar-toggle:hover {
-  background-color: hsl(196, 46%, 32%);
-}
-.navbar-toggle .icon-bar {
-  background-color: hsl(202, 63%, 48%);
-}
 .dropdown {
   cursor: pointer;
 }
 .err {
   float: left;
 }
-.glyphicon-spin {
 
-  animation: spin 2s infinite linear;
-}
-@keyframes spin {
-  0% {
-
-    transform: rotate(0deg);
-  }
-  100% {
-
-    transform: rotate(359deg);
-  }
-}
 /* Carousel IMG Centering */
 .carousel-inner {
   height: 600px;

@@ -26,7 +26,7 @@
       <div class='modal-dialog'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <button role='button' type='button' class='close' data-dismiss='modal'>&times;</button>
             <h4 class='modal-title'>Donate</h4>
           </div>
           <div class='modal-body'>
@@ -37,28 +37,28 @@
             (Alpha tester status has to be applied manually, so it will take a small amount of time to show up.)
 
             <!-- PayPal Form -->
-            <form action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
-              <input type='hidden' name='cmd' value='_donations'>
-              <input type='hidden' name='business' value='8U9DK42DS2US2'>
-              <input type='hidden' name='lc' value='US'>
-              <input type='hidden' name='item_name' value='Grappl'>
-              <input type='hidden' name='button_subtype' value='services'>
-              <input type='hidden' name='currency_code' value='USD'>
-              <input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted'>
+            <form role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+              <input type='hidden' name='cmd' value='_donations' />
+              <input type='hidden' name='business' value='8U9DK42DS2US2' />
+              <input type='hidden' name='lc' value='US' />
+              <input type='hidden' name='item_name' value='Grappl' />
+              <input type='hidden' name='button_subtype' value='services' />
+              <input type='hidden' name='currency_code' value='USD' />
+              <input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted' />
               <table>
                 <tr>
                   <td>
-                    <input type='hidden' name='on0' value='Username'>
+                    <input type='hidden' name='on0' value='Username' />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input id='inputDonate' type='text' name='os0' placeholder='Username' maxlength='100'>
+                    <input id='inputDonate' type='text' name='os0' placeholder='Username' maxlength='100' role='textbox' />
                   </td>
                 </tr>
               </table>
-              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
-              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'>
+              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
+              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
             </form>
 
           </div>
@@ -70,25 +70,40 @@
       <div class='modal-dialog'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
             <h4 class='modal-title'>Register</h4>
           </div>
           <div class='modal-body'>
-            <form>
-              <input type='text' name='user' placeholder='Username' maxlength='100'>
-              <span class='sr-only'>Username</span>
-              <br>
-              <input type='password' name='pass' placeholder='Password' maxlength='100'>
-              <span class='sr-only'>Password</span>
-              <br>
-              <input type='password' name='pass2' placeholder='Confirm password' maxlength='100'>
-              <span class='sr-only'>Confirm password</span>
-              <br>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterUser'>Username</label>
+                <div class="input-group">
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+                </div>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterPass'>Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterPass' class='form-control' type='password' name='pass' maxlength='100' aria-describedby='modalRegisterPassStatus' role='textbox' />
+                </div>
+                <span id='modalRegisterPassStatus' class='sr-only'></span>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterConfirm'>Confirm Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterConfirm' class='form-control' type='password' name='pass2' maxlength='100' aria-describedby='modalRegisterConfirmStatus' role='textbox' />
+                </div>
+                <span id='modalRegisterConfirmStatus' class='sr-only'></span>
+              </div>
             </form>
           </div>
           <div class='modal-footer'>
             <p class='err'></p>
-            <button class='btn btn-success' id='submitRegister'>Submit</button>
+            <button role='button' class='btn btn-success' id='submitRegister'>Submit</button>
           </div>
         </div>
       </div>
@@ -98,22 +113,31 @@
       <div class='modal-dialog'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
             <h4 class='modal-title'>Login</h4>
           </div>
           <div class='modal-body'>
-            <form>
-              <input type='text' name='user' placeholder='Username' maxlength='100'>
-              <span class='sr-only'>Username</span>
-              <br>
-              <input type='password' name='pass' placeholder='Password' maxlength='100'>
-              <span class='sr-only'>Password</span>
-              <br>
-            </form>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginUser'>Username</label>
+                <div class="input-group">
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalLoginUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+                </div>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginPass'>Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalLoginPass' class='form-control' type='password' name='pass' maxlength='100' aria-describedby='modalLoginPassStatus' role='textbox' />
+                </div>
+                <span id='modalLoginPassStatus' class='sr-only'></span>
+              </div>
           </div>
           <div class='modal-footer'>
             <p class='err'></p>
-            <button class='btn btn-success' id='submitLogin'>Submit</button>
+            <button role='button' class='btn btn-success' id='submitLogin'>Submit</button>
           </div>
         </div>
       </div>
@@ -123,7 +147,8 @@
       <div class='modal-dialog'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
             <h3 class='modal-title'>License</h3>
           </div>
           <div class='modal-body'>
@@ -154,7 +179,8 @@
     ======================================================================= -->
     <nav class='navbar navbar-inverse'>
         <div class='navbar-header'>
-          <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#theNavbar'>
+          <button role='button' type='button' class='navbar-toggle' data-toggle='collapse' data-target='#theNavbar' aria-expanded='false'>
+            <span class="sr-only">Toggle navigation</span>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
@@ -166,37 +192,37 @@
         </div>
         <div class='collapse navbar-collapse' id='theNavbar'>
           <ul class='nav navbar-nav navbar-right'>
-            <li><a href='/' rel='prefetch'><span class='glyphicon glyphicon-home'></span> Home</a></li>
-            <li><a id='btnDonate'><span class='glyphicon glyphicon-heart'></span> Donate</a></li>
+            <li><a role='button' href='/' rel='prefetch'><span class='glyphicon glyphicon-home'></span> Home</a></li>
+            <li><a role='button' id='btnDonate' href='javascript:void(0)'><span class='glyphicon glyphicon-heart'></span> Donate</a></li>
             <li class='dropdown'>
-              <a class='dropdown-toggle' data-toggle='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-download-alt'></span> Download
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
-                <li><a href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
               </ul>
             </li>
             <li class='dropdown'>
-              <a class='dropdown-toggle' data-toggle='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-user'></span> Account
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a id='btnRegister'>Register</a></li>
-                <li><a id='btnLogin'>Login</a></li>
+                <li><a role='button' id='btnRegister' href='javascript:void(0)'>Register</a></li>
+                <li><a role='button' id='btnLogin' href='javascript:void(0)'>Login</a></li>
               </ul>
             </li>
             <li class='dropdown'>
-              <a class='dropdown-toggle' data-toggle='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-alert'></span> Help
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a href='/status' rel='prefetch'>Server Status</a></li>
-                <li><a href='/faq' rel='prefetch'>FAQ</a></li>
-                <li><a href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
+                <li><a role='button' href='/status' rel='prefetch'>Server Status</a></li>
+                <li><a role='button' href='/faq' rel='prefetch'>FAQ</a></li>
+                <li><a role='button' href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
               </ul>
             </li>
           </ul>
@@ -210,31 +236,32 @@
     <main class='container'>
       <div class='row'>
 
-        <main class='col-lg-12'>
-            <p>
-              Grappl is a tool that lets you host virtually any type of server anywhere, with no port forwarding!
-              <br/>
-              Better yet, it's completely free software, and the client is licensed LGPL v.2.1.
-            </p>
-            <p>
-              How to Run
-              <br/>
-              Start it.
-              <br/>
-              Either log in or choose to be anonymous.
-              <br/>
-              Enter your server's local port number.
-              <br/>
-              The public address will appear in the grappl window.
-            </p>
-        </main>
+        <div class='col-lg-12'>
+            <h1>Grappl is a tool that lets you host virtually any type of server anywhere, with no port forwarding!</h1>
+            <div class='row'>
+              <div class='col-lg-6'>
+                <h3>Better yet, it's completely free software, and the client is licensed <a href='http://www.gnu.org/licenses/lgpl-2.1' target='_blank'>LGPL v.2.1</a>.</h3>
+              </div>
+              <div class='col-lg-6'>
+                <h3>How to Run</h3>
+                <p>
+                  Start Grappl.
+                  <br/>
+                  Log in or choose to be anonymous.
+                  <br/>
+                  Enter your server's local port number.
+                  <br/>
+                  The public address will appear in the Grappl window.
+                </p>
+              </div>
+            </div>
+        </div>
       </div>
 
       <div class='row'>
         <!-- Image Carousel
         =================================================================== -->
         <section id='imgCarousel' class='col-lg-8 carousel slide' data-ride='carousel'>
-
           <!-- Indicators -->
           <ol class='carousel-indicators'>
             <li data-target='#imgCarousel' data-slide-to='0' class='active'></li>
@@ -242,32 +269,27 @@
             <li data-target='#imgCarousel' data-slide-to='2'></li>
             <li data-target='#imgCarousel' data-slide-to='3'></li>
           </ol>
-
           <!-- Wrapper for slides -->
           <div class='carousel-inner' role='listbox'>
             <div class='item active'>
               <img src='/res/img/normalGUI.png' alt='Normal GUI' width='70%'>
             </div>
-
             <div class='item'>
               <img src='/res/img/console.png' alt='Console' width='100%'>
             </div>
-
             <div class='item'>
               <img src='/res/img/advancedGUI.png' alt='Advanced GUI' width='100%'>
             </div>
-
             <div class='item'>
               <img src='/res/img/httpDebug.png' alt='HTTP Debug' width='100%'>
             </div>
           </div>
-
           <!-- Left and right controls -->
-          <a class='left carousel-control' href='#imgCarousel' role='button' data-slide='prev'>
+          <a role='button' class='left carousel-control' href='#imgCarousel' data-slide='prev'>
             <span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></span>
             <span class='sr-only'>Previous</span>
           </a>
-          <a class='right carousel-control' href='#imgCarousel' role='button' data-slide='next'>
+          <a role='button' class='right carousel-control' href='#imgCarousel' data-slide='next'>
             <span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>
             <span class='sr-only'>Next</span>
           </a>
@@ -300,7 +322,7 @@
     ======================================================================= -->
     <footer>
       <div class='container'>
-        <a id='license' rel='license'>License</a>
+        <a role='button' id='license' href='javascript:void(0)' rel='license'>License</a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href='mailto:matt@daexsys.com'>Contact: matt@daexsys.com</a>
       </div>
@@ -351,6 +373,17 @@
                 $('#modalLogin input').first()
                   .focus();
               })
+              $('#modalRegister, #modalLogin').on('keypress', function capsTest(event) {
+                var s = String.fromCharCode( event.which );
+                if ((s.toUpperCase() === s && s.toLowerCase() !== s && !event.shiftKey) ||
+                (s.toUpperCase() !== s && s.toLowerCase() === s && event.shiftKey)) {
+                  $('#CapsWarn').show();
+                }
+                else if ((s.toLowerCase() === s && s.toUpperCase() !== s && !event.shiftKey) ||
+                (s.toLowerCase() !== s && s.toUpperCase() === s && event.shiftKey)) {
+                  $('#CapsWarn').hide();
+                }
+              });
               $('#license').click(function clickLicense(event) {
                 event.preventDefault();
                 $('#modalLicense').modal('show');
@@ -359,7 +392,7 @@
                 event.preventDefault();
                 // Confirm that user input is being handled and disable button till user input is processed
                 $('#submitRegister').prop('disabled', true)
-                  .html('<span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Submitting...');
+                  .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
                 $.ajax({
                   type: 'POST',
                   url: '/registerhandler',
@@ -390,7 +423,7 @@
                 event.preventDefault();
                 // Confirm that user input is being handled and disable button till user input is processed
                 $('#submitLogin').prop('disabled', true)
-                  .html('<span class="glyphicon glyphicon-refresh glyphicon-spin"></span> Submitting...');
+                  .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
                 $.ajax({
                   type: 'POST',
                   url: '/auth',
