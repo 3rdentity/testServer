@@ -7,16 +7,17 @@
     <meta charset='utf-8'>
     <meta name='author' content='cactose + shasharala'>
     <meta name='description' content=''>
-    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
-    <link rel='icon' type='image/x-icon' href='http://grappl.io:888/html/grapplicon.ico'>
-    <link rel='stylesheet' type='text/css' href='res/vendor/normalize.min.css'>
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href='res/css/main.css'>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
+    <link rel='icon' type='image/x-icon' href='//grappl.io:888/html/grapplicon.ico'>
+    <link rel='stylesheet' type='text/css' href='/res/vendor/normalize.min.css'>
+    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/res/css/main.css'>
     <title>Grappl - You are the cloud now</title>
 
   </head>
 
   <body>
+
     <!-- Modals
     ===========================================================================
     Placed at the beginning of the document to avoid being affected by other
@@ -25,7 +26,7 @@
       <div class='modal-dialog'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <button role='button' type='button' class='close' data-dismiss='modal'>&times;</button>
             <h4 class='modal-title'>Donate</h4>
           </div>
           <div class='modal-body'>
@@ -36,30 +37,106 @@
             (Alpha tester status has to be applied manually, so it will take a small amount of time to show up.)
 
             <!-- PayPal Form -->
-            <form action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
-              <input type='hidden' name='cmd' value='_donations'>
-              <input type='hidden' name='business' value='8U9DK42DS2US2'>
-              <input type='hidden' name='lc' value='US'>
-              <input type='hidden' name='item_name' value='Grappl'>
-              <input type='hidden' name='button_subtype' value='services'>
-              <input type='hidden' name='currency_code' value='USD'>
-              <input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted'>
+            <form role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+              <input type='hidden' name='cmd' value='_donations' />
+              <input type='hidden' name='business' value='8U9DK42DS2US2' />
+              <input type='hidden' name='lc' value='US' />
+              <input type='hidden' name='item_name' value='Grappl' />
+              <input type='hidden' name='button_subtype' value='services' />
+              <input type='hidden' name='currency_code' value='USD' />
+              <input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted' />
               <table>
                 <tr>
                   <td>
-                    <input type='hidden' name='on0' value='Username'>
+                    <input type='hidden' name='on0' value='Username' />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input id='inputDonate' type='text' name='os0' placeholder='Username' maxlength='100'>
+                    <input id='inputDonate' type='text' name='os0' placeholder='Username' maxlength='100' role='textbox' />
                   </td>
                 </tr>
               </table>
-              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>
-              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'>
+              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
+              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
             </form>
 
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalRegister' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h4 class='modal-title'>Register</h4>
+          </div>
+          <div class='modal-body'>
+            <span class='modalStatus'></span>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterUser'>Username</label>
+                <div class="input-group">
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+                </div>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterPass'>Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
+                </div>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterConfirm'>Confirm Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalRegisterConfirm' class='form-control' type='password' name='pass2' maxlength='100' role='textbox' />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class='modal-footer'>
+            <p class='err'></p>
+            <button role='button' class='btn btn-success' id='submitRegister'>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalLogin' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h4 class='modal-title'>Login</h4>
+          </div>
+          <div class='modal-body'>
+            <span class='modalStatus'></span>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginUser'>Username</label>
+                <div class="input-group">
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalLoginUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+                </div>
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginPass'>Password</label>
+                <div class='input-group'>
+                  <span class='input-group-addon'><span class='glyphicon glyphicon-unchecked'></span></span>
+                  <input id='modalLoginPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
+                </div>
+              </div>
+          </div>
+          <div class='modal-footer'>
+            <p class='err'></p>
+            <button role='button' class='btn btn-success' id='submitLogin'>Submit</button>
           </div>
         </div>
       </div>
@@ -69,12 +146,13 @@
       <div class='modal-dialog'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
             <h3 class='modal-title'>License</h3>
           </div>
           <div class='modal-body'>
             <p>Do not use Grappl to transmit any copyrighted material that you do not have the right to transmit.
-            <br/>
+            <br />
             Do not use Grappl to do anything illegal.</p>
             <p>You are responsible for what you use this service for.</p>
             <p>There is no uptime guarantee.</p>
@@ -98,9 +176,10 @@
 
     <!-- Header
     ======================================================================= -->
-    <nav class='navbar'>
+    <nav class='navbar navbar-inverse'>
         <div class='navbar-header'>
-          <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#theNavbar'>
+          <button role='button' type='button' class='navbar-toggle' data-toggle='collapse' data-target='#theNavbar' aria-expanded='false'>
+            <span class="sr-only">Toggle navigation</span>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
             <span class='icon-bar'></span>
@@ -112,42 +191,43 @@
         </div>
         <div class='collapse navbar-collapse' id='theNavbar'>
           <ul class='nav navbar-nav navbar-right'>
-            <li><a href='/' rel='prefetch'><span class='glyphicon glyphicon-home'></span> Home</a></li>
-            <li><a id='btnDonate'><span class='glyphicon glyphicon-heart'></span> Donate</a></li>
+            <li><a role='button' href='/' rel='prefetch'><span class='glyphicon glyphicon-home'></span> Home</a></li>
+            <li><a role='button' id='btnDonate' href='javascript:void(0)'><span class='glyphicon glyphicon-heart'></span> Donate</a></li>
             <li class='dropdown'>
-              <a class='dropdown-toggle' data-toggle='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-download-alt'></span> Download
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
-                <li><a href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
               </ul>
             </li>
             <li class='dropdown'>
-              <a class='dropdown-toggle' data-toggle='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-user'></span> Dynamic Username<!--NOTE Dynamic username here-->
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a href='/account'>Account</a></li>
-                <li><a href='/logout'>Logout</a></li>
+                <li><a role='button' href='/account'>Account</a></li>
+                <li><a role='button' href='/logout'>Logout</a></li>
               </ul>
             </li>
             <li class='dropdown'>
-              <a class='dropdown-toggle' data-toggle='dropdown'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-alert'></span> Help
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a href='/status' rel='prefetch'>Server Status</a></li>
-                <li><a href='/faq' rel='prefetch'>FAQ</a></li>
-                <li><a href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
+                <li><a role='button' href='/status' rel='prefetch'>Server Status</a></li>
+                <li><a role='button' href='/faq' rel='prefetch'>FAQ</a></li>
+                <li><a role='button' href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
               </ul>
             </li>
           </ul>
         </div>
     </nav>
+
 
     <!--
   hello testificatebob - home - your account - donate - logout-->
