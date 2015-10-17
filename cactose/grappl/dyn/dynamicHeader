@@ -1,0 +1,10 @@
+<li class='dropdown'>
+  <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
+    <span class='glyphicon glyphicon-user'></span> Dynamic Username<!--NOTE Dynamic username here-->
+    <span class='caret'></span>
+  </a>
+  <ul class='dropdown-menu'>
+    <li><a role='button' href='/account'>Account</a></li>
+    <li><a role='button' href='/logout'>Logout</a></li>
+  </ul>
+</li>

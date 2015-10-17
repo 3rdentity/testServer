@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+
+  <head>
+
+    <meta charset='utf-8'>
+    <meta name='author' content='cactose + shasharala'>
+    <meta name='description' content=''>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
+    <link rel='icon' type='image/x-icon' href='//grappl.io:888/html/grapplicon.ico'>
+    <link rel='stylesheet' type='text/css' href='/res/vendor/normalize.min.css'>
+    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/res/css/main.css'>
+    <title>Grappl - You are the cloud now</title>
+
+  </head>
+
+  <body>
+
+    <!-- Modals
+    ===========================================================================
+    Placed at the beginning of the document to avoid being affected by other
+    components -->
+    <div id='modalDonate' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button role='button' type='button' class='close' data-dismiss='modal'>&times;</button>
+            <h4 class='modal-title'>Donate</h4>
+          </div>
+          <div class='modal-body'>
+            <p>You can donate any amount you want, any help is appreciated!</p>
+            <p>If you donate $5 or more and include your username you will be able to alpha test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
+            <p>(Alpha tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
+            <!-- PayPal Form -->
+            <form role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+              <input type='hidden' name='cmd' value='_donations' />
+              <input type='hidden' name='business' value='8U9DK42DS2US2' />
+              <input type='hidden' name='lc' value='US' />
+              <input type='hidden' name='item_name' value='Grappl' />
+              <input type='hidden' name='button_subtype' value='services' />
+              <input type='hidden' name='currency_code' value='USD' />
+              <input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted' />
+              <table>
+                <tr>
+                  <td>
+                    <input type='hidden' name='on0' value='Username' />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class='form-group'>
+                      <label class='control-label' for='modalDonateInput'>Username</label>
+                      <input id='modalDonateInput' class='form-control' type='text' name='os0' maxlength='100' role='textbox' />
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
+              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalRegister' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h4 class='modal-title'>Register</h4>
+          </div>
+          <div class='modal-body'>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterUser'>Username</label>
+                <input id='modalRegisterUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterPass'>Password</label>
+                <input id='modalRegisterPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalRegisterConfirm'>Confirm Password</label>
+                <input id='modalRegisterConfirm' class='form-control' type='password' name='pass2' maxlength='100' role='textbox' />
+              </div>
+            </form>
+          </div>
+          <div class='modal-footer'>
+            <p class='err'></p>
+            <button role='button' class='btn' id='submitRegister'>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalLogin' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h4 class='modal-title'>Login</h4>
+          </div>
+          <div class='modal-body'>
+            <form role='form'>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginUser'>Username</label>
+                <input id='modalLoginUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
+              </div>
+              <div class='form-group'>
+                <label class='control-label' for='modalLoginPass'>Password</label>
+                <input id='modalLoginPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
+              </div>
+          </div>
+          <div class='modal-footer'>
+            <p class='err'></p>
+            <button role='button' class='btn' id='submitLogin'>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id='modalLicense' class='modal fade'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <span class='sr-only'>Close</span>
+            <button role='button' type='button' class='close glyphicon glyphicon-remove-circle' data-dismiss='modal'></button>
+            <h3 class='modal-title'>License</h3>
+          </div>
+          <div class='modal-body'>
+            <p>Do not use Grappl to transmit any copyrighted material that you do not have the right to transmit.
+            <br />
+            Do not use Grappl to do anything illegal.</p>
+            <p>You are responsible for what you use this service for.</p>
+            <p>There is no uptime guarantee.</p>
+            <hr/>
+            <h4>Licensed Software</h4>
+            <ul>
+              <li><a href='//github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
+              <li><a href='//jquery.org/license/' target='_blank'>jQuery</a></li>
+              <li><a href='res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
+              <li><a href='res/vendor/Open_Sans/LICENSE.txt' target='_blank'>res/vendor/Open_Sans/LICENSE.txt</a></li>
+            </ul>
+          </div>
+          <div class='modal-footer'>
+            Website design by <a href='//www.shasharala.net' rel='author'>shasharala</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Header
+    ======================================================================= -->
+    <nav class='navbar navbar-inverse'>
+        <div class='navbar-header'>
+          <button role='button' type='button' class='navbar-toggle' data-toggle='collapse' data-target='#theNavbar' aria-expanded='false'>
+            <span class="sr-only">Toggle navigation</span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+          <a class='navbar-brand' href='/' rel='prefetch'>
+            <img id='logo' src='//grappl.io:888/html/logo.png' alt='grappl logo' />
+            <span id='logoTxt'>You are the cloud now</span>
+          </a>
+        </div>
+        <div class='collapse navbar-collapse' id='theNavbar'>
+          <ul class='nav navbar-nav navbar-right'>
+            <li><a role='button' href='/' rel='prefetch'><span class='glyphicon glyphicon-home'></span> Home</a></li>
+            <li><a role='button' id='btnDonate' href='#'><span class='glyphicon glyphicon-heart'></span> Donate</a></li>
+            <li class='dropdown'>
+              <a role='button' class='dropdown-toggle' href='#' data-toggle='dropdown' aria-expanded='false'>
+                <span class='glyphicon glyphicon-download-alt'></span> Download
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
+              </ul>
+            </li>
+            <li class='dropdown'>
+              <a role='button' class='dropdown-toggle' href='#' data-toggle='dropdown' aria-expanded='false'>
+                <span class='glyphicon glyphicon-user'></span> Account
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a role='button' id='btnRegister' href='#'>Register</a></li>
+                <li><a role='button' id='btnLogin' href='#'>Login</a></li>
+              </ul>
+            </li>
+            <li class='dropdown'>
+              <a role='button' class='dropdown-toggle' href='#' data-toggle='dropdown' aria-expanded='false'>
+                <span class='glyphicon glyphicon-alert'></span> Help
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a role='button' href='/status' rel='prefetch'>Server Status</a></li>
+                <li><a role='button' href='/faq' rel='prefetch'>FAQ</a></li>
+                <li><a role='button' href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+    </nav>

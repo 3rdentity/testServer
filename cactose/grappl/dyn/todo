@@ -1,0 +1,26 @@
+header/footer handling
+- needs to check user id in document.cookie and respond with a dynamic account replacement or do nothing if document.cookie contains an id='0'
+
+/registerhandler
+- needs to respond with one of a few options:
+  a string containing 'An account with that name already exists.' or similar message
+  a string containing 'The passwords you have entered do not match.' or similar message
+  a string containing 'Account registered!' or similar message followed by a session id followed by a page to redirect to
+    example: 'Account registered!; 901877653; /account'
+
+/auth
+- needs to respond with one of two options:
+  a string containing 'Incorrect username or password.'
+  a string containing a confirmation message followed by a session id followed by a page to redirect to
+    example: 'Welcome back, testificatealice; 901872345; /account'
+
+/res
+- resources need to be stored serverside
+- if the filepath of resources are changed they will need to be changed inline
+
+Content is stored inside a container that is fairly simple to replicate
+Page Layout:
+- Header - with appropriate changes if user id is not '0'
+- Content
+- Footer - served dynamically
+Contact shasharala for assistance
