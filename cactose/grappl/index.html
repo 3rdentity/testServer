@@ -7,11 +7,11 @@
     <meta charset='utf-8'>
     <meta name='author' content='cactose + shasharala'>
     <meta name='description' content=''>
-    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
-    <link rel='icon' type='image/x-icon' href='https://grappl.io:888/html/grapplicon.ico'>
-    <link rel='stylesheet' type='text/css' href='res/vendor/normalize.min.css'>
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href='res/css/main.css'>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
+    <link rel='icon' type='image/x-icon' href='//grappl.io:888/html/grapplicon.ico'>
+    <link rel='stylesheet' type='text/css' href='/res/vendor/normalize.min.css'>
+    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='/res/css/main.css'>
     <title>Grappl - You are the cloud now</title>
 
   </head>
@@ -30,14 +30,11 @@
             <h4 class='modal-title'>Donate</h4>
           </div>
           <div class='modal-body'>
-            You can donate any amount you want, any help is appreciated!
-            If you donate $5 or more and include your username
-            you will be able to alpha test new features, like static ports, which
-            let you keep the same address every time you start Grappl.
-            (Alpha tester status has to be applied manually, so it will take a small amount of time to show up.)
-
+            <p>You can donate any amount you want, any help is appreciated!</p>
+            <p>If you donate $5 or more and include your username you will be able to alpha test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
+            <p>(Alpha tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
             <!-- PayPal Form -->
-            <form role='form' action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+            <form role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
               <input type='hidden' name='cmd' value='_donations' />
               <input type='hidden' name='business' value='8U9DK42DS2US2' />
               <input type='hidden' name='lc' value='US' />
@@ -53,12 +50,15 @@
                 </tr>
                 <tr>
                   <td>
-                    <input id='inputDonate' type='text' name='os0' placeholder='Username' maxlength='100' role='textbox' />
+                    <div class='form-group'>
+                      <label class='control-label' for='modalDonateInput'>Username</label>
+                      <input id='modalDonateInput' class='form-control' type='text' name='os0' maxlength='100' role='textbox' />
+                    </div>
                   </td>
                 </tr>
               </table>
-              <input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
-              <img alt='' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
+              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
+              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
             </form>
 
           </div>
@@ -78,27 +78,21 @@
             <form role='form'>
               <div class='form-group'>
                 <label class='control-label' for='modalRegisterUser'>Username</label>
-                <div class="input-group">
-                  <input id='modalRegisterUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
-                </div>
+                <input id='modalRegisterUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
               </div>
               <div class='form-group'>
                 <label class='control-label' for='modalRegisterPass'>Password</label>
-                <div class='input-group'>
-                  <input id='modalRegisterPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
-                </div>
+                <input id='modalRegisterPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
               </div>
               <div class='form-group'>
                 <label class='control-label' for='modalRegisterConfirm'>Confirm Password</label>
-                <div class='input-group'>
-                  <input id='modalRegisterConfirm' class='form-control' type='password' name='pass2' maxlength='100' role='textbox' />
-                </div>
+                <input id='modalRegisterConfirm' class='form-control' type='password' name='pass2' maxlength='100' role='textbox' />
               </div>
             </form>
           </div>
           <div class='modal-footer'>
             <p class='err'></p>
-            <button role='button' class='btn btn-success' id='submitRegister'>Submit</button>
+            <button role='button' class='btn' id='submitRegister'>Submit</button>
           </div>
         </div>
       </div>
@@ -116,20 +110,16 @@
             <form role='form'>
               <div class='form-group'>
                 <label class='control-label' for='modalLoginUser'>Username</label>
-                <div class="input-group">
-                  <input id='modalLoginUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
-                </div>
+                <input id='modalLoginUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
               </div>
               <div class='form-group'>
                 <label class='control-label' for='modalLoginPass'>Password</label>
-                <div class='input-group'>
-                  <input id='modalLoginPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
-                </div>
+                <input id='modalLoginPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
               </div>
           </div>
           <div class='modal-footer'>
             <p class='err'></p>
-            <button role='button' class='btn btn-success' id='submitLogin'>Submit</button>
+            <button role='button' class='btn' id='submitLogin'>Submit</button>
           </div>
         </div>
       </div>
@@ -152,14 +142,14 @@
             <hr/>
             <h4>Licensed Software</h4>
             <ul>
-              <li><a href='https://github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
-              <li><a href='https://jquery.org/license/' target='_blank'>jQuery</a></li>
+              <li><a href='//github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
+              <li><a href='//jquery.org/license/' target='_blank'>jQuery</a></li>
               <li><a href='res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
               <li><a href='res/vendor/Open_Sans/LICENSE.txt' target='_blank'>res/vendor/Open_Sans/LICENSE.txt</a></li>
             </ul>
           </div>
           <div class='modal-footer'>
-            Website design by <a href='https://www.shasharala.net' rel='author'>shasharala</a>
+            Website design by <a href='//www.shasharala.net' rel='author'>shasharala</a>
           </div>
         </div>
       </div>
@@ -178,7 +168,7 @@
             <span class='icon-bar'></span>
           </button>
           <a class='navbar-brand' href='/' rel='prefetch'>
-            <img id='logo' src='https://grappl.io:888/html/logo.png' alt='grappl logo' />
+            <img id='logo' src='//grappl.io:888/html/logo.png' alt='grappl logo' />
             <span id='logoTxt'>You are the cloud now</span>
           </a>
         </div>
@@ -192,8 +182,8 @@
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a role='button' href='https://grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
-                <li><a role='button' href='https://grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
+                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
               </ul>
             </li>
             <li class='dropdown'>
@@ -214,7 +204,7 @@
               <ul class='dropdown-menu'>
                 <li><a role='button' href='/status' rel='prefetch'>Server Status</a></li>
                 <li><a role='button' href='/faq' rel='prefetch'>FAQ</a></li>
-                <li><a role='button' href='https://github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
+                <li><a role='button' href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
               </ul>
             </li>
           </ul>
@@ -232,7 +222,7 @@
             <h1>Grappl is a tool that lets you host virtually any type of server anywhere, with no port forwarding!</h1>
             <div class='row'>
               <div class='col-lg-6'>
-                <h3>Better yet, it's completely free software, and the client is licensed <a href='http:https://www.gnu.org/licenses/lgpl-2.1' target='_blank'>LGPL v.2.1</a>.</h3>
+                <h3>Better yet, it's completely free software, and the client is licensed <a href='http://www.gnu.org/licenses/lgpl-2.1' target='_blank'>LGPL v.2.1</a>.</h3>
               </div>
               <div class='col-lg-6'>
                 <h3>How to Run</h3>
@@ -290,7 +280,7 @@
         <!-- Twitter Widget
         =================================================================== -->
         <section class='col-lg-4'>
-          <a class='twitter-timeline' href='https:https://twitter.com/Cactose' data-widget-id='616471055713083392' target='_blank'>Tweets by @Cactose</a>
+          <a class='twitter-timeline' href='https://twitter.com/Cactose' data-widget-id='616471055713083392' target='_blank'>Tweets by @Cactose</a>
             <script>
               ! function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0],
@@ -298,7 +288,7 @@
                 if (!d.getElementById(id)) {
                   js = d.createElement(s);
                   js.id = id;
-                  js.src = p + ':https://platform.twitter.com/widgets.js';
+                  js.src = p + '://platform.twitter.com/widgets.js';
                   fjs.parentNode.insertBefore(js, fjs);
                 }
               }(document, 'script', 'twitter-wjs');
@@ -326,11 +316,11 @@
     ===========================================================================
     Placed at the end of the document so the page loads faster -->
     <!-- jQuery CDN Fallback-->
-    <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
     <script>window.jQuery || document.write('<script src="res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
 
     <!-- BootstrapJS CDN Fallback -->
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
     <script>window.jQuery.fn.modal || document.write('<script src="res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
     <script>
       (function jQueryAlias($) {
@@ -384,15 +374,23 @@
           $(document).keydown(function documentCapsTest(event){
             // If Caps Lock key is pressed test to see if state has yet been determined
             if(event.which == 20) {
-              if(typeof(capsStatus) === 'boolean'){
-                capsStatus = !capsStatus;
-                $('#modalRegister .err, #modalLogin .err').toggle();
+              if (typeof(capsStatus) === 'boolean'){
+                if (capsStatus === true) {
+                  capsStatus = false;
+                  $('#modalRegister .err, #modalLogin .err').html('')
+                  .hide();
+                }
+                else {
+                  capsStatus = true;
+                  $('#modalRegister .err, #modalLogin .err').html('Caps Lock is on!')
+                  .show();
+                }
               }
             }
           });
           $(window).blur(function windowCapsTest(){
             // If window is inactive then status of Caps Lock key is indeterminate
-            if(typeof(capsStatus) === 'boolean'){
+            if (typeof(capsStatus) === 'boolean') {
               capsStatus = null;
               $('#modalRegister .err, #modalLogin .err').hide();
             }
@@ -412,6 +410,54 @@
               url: '/registerhandler',
               data: $('#modalRegister form').serialize(),
               success: function(msg) {
+                switch (msg) {
+                  /*
+                  This case could be one word and a custom message could be set to $('modalRegister .err').html in response
+                  Example:
+                  case 'error':
+                    $('#modalRegister .err').html('An account with that name already exists.')
+                      .fadeIn()
+                      .delay(1500)
+                      .fadeOut()
+                    break;
+                  */
+                  case 'An account with that name already exists.':
+                    $('#modalRegister .err').html(msg)
+                      .fadeIn(function returnSubmitControl() {
+                        // User input has been handled so return control to the user and reset the submission button
+                        $('#submitRegister').prop('disabled', false)
+                          .html('Submit');
+                      })
+                      .delay(1500)
+                      .fadeOut();
+                    break;
+                  case 'The passwords you have entered do not match.':
+                    $('#modalRegister .err').html(msg)
+                      .fadeIn(function returnSubmitControl() {
+                        // User input has been handled so return control to the user and reset the submission button
+                        $('#submitRegister').prop('disabled', false)
+                          .html('Submit');
+                      })
+                      .delay(1500)
+                      .fadeOut();
+                    break;
+                  default:
+                    /*
+                    A login response will contain three parameters in a string:
+                    'msg;cookie;redirecton'
+                    'Account registered!;1442846245957;/account'
+                    */
+                    var arr = msg.split(';');
+                    msg = arr[0]; // Set msg to actual message from response
+                    var c = arr[1] // Set c to cookie provided in response
+                    var r = arr[2] // Set r to redirecton page provided in response
+                    $('#modalRegister .err').html(msg)
+                      .fadeIn()
+                      .delay(1000, function CBLogin() {
+                        document.cookie = c; // Set user cookie
+                        window.location.href = r; // Redirect user
+                      });
+                }
                 $('#modalRegister .err').html(msg)
                   .fadeIn(function returnSubmitControl() {
                     // User input has been handled so return control to the user and reset the submission button
@@ -452,14 +498,14 @@
                   This case could be one word and a custom message could be set to $('modalLogin p').html in response
                   Example:
                   case 'error':
-                    $('#modalLogin p').html('Incorrect username or password.')
+                    $('#modalLogin .err').html('Incorrect username or password.')
                       .fadeIn()
                       .delay(1500)
                       .fadeOut()
                     break;
                   */
                   case 'Incorrect username or password.':
-                    $('#modalLogin p').html(msg)
+                    $('#modalLogin .err').html(msg)
                       .fadeIn(function returnSubmitControl() {
                         // User input has been handled so return control to the user and reset the submission button
                         $('#submitLogin').prop('disabled', false)
@@ -478,7 +524,7 @@
                     msg = arr[0]; // Set msg to actual message from response
                     var c = arr[1] // Set c to cookie provided in response
                     var r = arr[2] // Set r to redirecton page provided in response
-                    $('#modalLogin p').html(msg)
+                    $('#modalLogin .err').html(msg)
                       .fadeIn()
                       .delay(1000, function CBLogin() {
                         document.cookie = c; // Set user cookie
@@ -487,7 +533,7 @@
                 }
               },
               error: function submitLoginError() {
-                $('#modalLogin p').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                $('#modalLogin .err').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
                   .fadeIn(function returnSubmitControl() {
                     // User input has been handled so return control to the user and reset the submission button
                     $('#submitLogin').prop('disabled', false)

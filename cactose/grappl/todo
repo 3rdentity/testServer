@@ -11,5 +11,3 @@ passwords do not match - backend responds with page detailing error
 empty password or username - backend hangs eternally
 
 col-lg col-sm col-xs etc
-
-seperate header/footer/js etc and content into seperate files

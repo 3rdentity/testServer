@@ -84,6 +84,7 @@ body {
 a {
   cursor: pointer;
   color: hsl(202, 63%, 48%);
+  text-decoration: underline;
 }
 a:hover{
   color: hsl(199, 91%, 95%);
@@ -93,13 +94,13 @@ nav a, .navbar .navbar-nav > li > a {
   transition: border-bottom-color 0.5s ease, color 0.5s ease;
   color: hsl(201, 58%, 51%);
   border-bottom: 3px solid hsl(0, 0%, 13%);
+  text-decoration: none;
 }
 nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
   cursor: pointer;
-  color: hsl(199, 91%, 95%);
   border-bottom-color: hsl(201, 58%, 51%);
-
 }
+
 main {
   margin-bottom: 50px;
   border-radius: 10px;
@@ -110,30 +111,51 @@ footer {
   background-color: hsl(0, 0%, 13%);
   color: hsl(201, 58%, 51%);
 }
+footer a {
+  text-decoration: none;
+}
 #logo {
   float: left;
   margin: -20px 0px 0px 0px;
+  color: hsl(202, 88%, 63%);
 }
 #logoTxt {
   float: right;
+  color: hsl(202, 88%, 63%);
 }
-#modalLicense .modal-body {
-  text-align: left;
+#modalDonate .modal-body {
+  text-align: center;
+}
+#modalDonate .modal-body table {
+  margin: auto;
 }
 #modalLicense .modal-body ul, #modalLicense .modal-body h4 {
   text-align: center;
   list-style-type: none;
 }
-.modal-content {
-  background-color: hsl(212, 60%, 15%);
-}
 .dropdown {
   cursor: pointer;
+}
+.modal-content {
+  background-color: hsla(0, 0%, 0%, 0.8);
+  text-align: left;
+}
+.modal .close {
+  color: #FFF;
+}
+.modal .btn {
+  background-color: hsl(202, 88%, 63%);
+  color: hsl(0, 0%, 13%);
+}
+.modal .btn:hover {
+  background-color: hsl(202, 57%, 51%);
+}
+.modal .btn:active {
+  background-color: hsl(201, 59%, 45%);
 }
 .err {
   float: left;
 }
-
 /* Carousel IMG Centering */
 .carousel-inner {
   height: 600px;
