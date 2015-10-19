@@ -1,0 +1,166 @@
+/* Sticky Footer Styles
+============================================================================ */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom defined by footer height */
+  margin-bottom: 30px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* The fixed height of the footer */
+  height: 30px;
+}
+
+
+
+/* Font Styles
+============================================================================ */
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/res/vendor/Open_Sans/OpenSans-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: normal;
+  font-weight: 700;
+  src:  url(/res/vendor/Open_Sans/OpenSans-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: italic;
+  font-weight: 400;
+  src:  url(/res/vendor/Open_Sans/OpenSans-Italic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans Fallback';
+  font-style: italic;
+  font-weight: 700;
+  src:  url(/res/vendor/Open_Sans/OpenSans-BoldItalic.ttf) format('truetype');
+}
+body {
+  font-family: 'Open Sans', 'Open Sans Fallback',  sans-serif;
+}
+
+
+
+/* Animations
+============================================================================ */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+.spin {
+  animation: spin 2s infinite linear;
+}
+
+
+
+/* Styles
+============================================================================ */
+::-moz-selection {
+  background-color: hsl(202, 88%, 63%);
+  color: hsl(0, 0%, 0%);
+}
+::selection {
+  background-color: hsl(202, 88%, 63%);
+  color: hsl(0, 0%, 0%);
+}
+body {
+  background-color: hsl(212, 60%, 15%);
+  text-align: center;
+  color: hsl(202, 88%, 63%);
+}
+a {
+  cursor: pointer;
+  color: hsl(202, 63%, 48%);
+  text-decoration: underline;
+}
+a:hover{
+  color: hsl(199, 91%, 95%);
+  text-decoration: none;
+}
+nav a, .navbar .navbar-nav > li > a {
+  transition: border-bottom-color 0.5s ease, color 0.5s ease;
+  color: hsl(201, 58%, 51%);
+  border-bottom: 3px solid hsl(0, 0%, 13%);
+  text-decoration: none;
+}
+nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+  cursor: pointer;
+  border-bottom-color: hsl(201, 58%, 51%);
+}
+
+main {
+  margin-bottom: 50px;
+  border-radius: 10px;
+  background-color: hsla(0, 0%, 0%, 0.5);
+}
+footer {
+  border: 1px solid hsl(0, 0%, 6%);
+  background-color: hsl(0, 0%, 13%);
+  color: hsl(201, 58%, 51%);
+}
+footer a {
+  text-decoration: none;
+}
+#logo {
+  float: left;
+  margin: -20px 0px 0px 0px;
+  color: hsl(202, 88%, 63%);
+}
+#logoTxt {
+  float: right;
+  color: hsl(202, 88%, 63%);
+}
+#modalDonate .modal-body {
+  text-align: center;
+}
+#modalDonate .modal-body table {
+  margin: auto;
+}
+#modalLicense .modal-body ul, #modalLicense .modal-body h4 {
+  text-align: center;
+  list-style-type: none;
+}
+.dropdown {
+  cursor: pointer;
+}
+.modal-content {
+  background-color: hsla(0, 0%, 0%, 0.8);
+  text-align: left;
+}
+.modal .close {
+  color: #FFF;
+}
+.modal .btn {
+  background-color: hsl(202, 88%, 63%);
+  color: hsl(0, 0%, 13%);
+}
+.modal .btn:hover {
+  background-color: hsl(202, 57%, 51%);
+}
+.modal .btn:active {
+  background-color: hsl(201, 59%, 45%);
+}
+.err {
+  float: left;
+}
+/* Carousel IMG Centering */
+.carousel-inner {
+  height: 600px;
+}
+.carousel-inner > .item > img {
+    margin: auto;
+    padding-top: 150px;
+}
