@@ -2,12 +2,12 @@
 ======================================================================= -->
 <main class='container'>
   <div class='row'>
-    <div class='col-xs-12'>
+    <div class='col-md-12'>
       <h1>Welcome, Dynamic Username!</h1>
     </div>
   </div>
   <div class='row'>
-    <div class='col-xs-6'>
+    <div class='col-md-6'>
       <h3>Tester Status</h3>
       <!-- testerStatus is dynamic and will change depending on the user -->
       <div class='testerStatus'>
@@ -16,7 +16,7 @@
         <button id='btnTesterDonate' class='btn'>Become a Beta Tester</button>
       </div>
     </div>
-    <div class='col-xs-6'>
+    <div class='col-md-6'>
       <h3>Stats</h3>
       <p>Connections routed: Dynamic Data</p>
       <p>Blocks routed in: Dynamic Data</p>

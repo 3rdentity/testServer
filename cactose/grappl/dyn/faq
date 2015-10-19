@@ -3,7 +3,7 @@
 <main class='container'>
   <div class='row'>
 
-    <div class='col-xs-12'>
+    <div class='col-md-12'>
       <h1>Frequently Asked Questions</h1>
       <br />
       <b>- Why?</b>
