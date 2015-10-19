@@ -150,7 +150,7 @@
                     msg = arr[0]; /* Set msg to actual message from response */
                     var r = arr[1]; /* Set r to redirecton page provided in response */
                     var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
-                    var cK = cAArr[0]; /* Set cK to cookie key provided in response */
+                    var cK = cArr[0]; /* Set cK to cookie key provided in response */
                     var cV = cArr[1]; /* Set cV to cookie value provided in response */
                     var cD = cArr[2] || grappl.io; /* Set cD to cookie domain provided in response or null*/
                     var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
@@ -235,7 +235,7 @@
                     msg = arr[0]; /* Set msg to actual message from response */
                     var r = arr[2] /* Set r to redirecton page provided in response */
                     var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
-                    var cK = cAArr[0]; /* Set cK to cookie key provided in response */
+                    var cK = cArr[0]; /* Set cK to cookie key provided in response */
                     var cV = cArr[1]; /* Set cV to cookie value provided in response */
                     var cD = cArr[2] || grappl.io; /* Set cD to cookie domain provided in response or null*/
                     var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
