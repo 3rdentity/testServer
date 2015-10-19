@@ -152,7 +152,7 @@
                     var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
                     var cK = cArr[0]; /* Set cK to cookie key provided in response */
                     var cV = cArr[1]; /* Set cV to cookie value provided in response */
-                    var cD = cArr[2] || grappl.io; /* Set cD to cookie domain provided in response or null*/
+                    var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
                     var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
                     var cT = cArr[4] || 0; /* Set cT to cookie expiry provided in response or 0*/
                     /* Set cT to a proper expiry format */
@@ -237,7 +237,7 @@
                     var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
                     var cK = cArr[0]; /* Set cK to cookie key provided in response */
                     var cV = cArr[1]; /* Set cV to cookie value provided in response */
-                    var cD = cArr[2] || grappl.io; /* Set cD to cookie domain provided in response or null*/
+                    var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
                     var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
                     var cT = cArr[4] || 0; /* Set cT to cookie decay time provided in response or 0*/
                     /* Set cT to a proper decay time format */
