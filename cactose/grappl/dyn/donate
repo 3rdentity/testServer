@@ -3,10 +3,10 @@
 <main class='container'>
   <div class='row'>
 
-    <div class='col-lg-8'>
+    <div class='col-xs-8'>
       <p>You can donate any amount you want, any help is appreciated!</p>
-      <p>If you donate $5 or more and include your username you will be able to alpha test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
-      <p>(Alpha tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
+      <p>If you donate $5 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
+      <p>(Beta Tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
 
       <!-- PayPal Form -->
       <form role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
@@ -36,7 +36,7 @@
 
     <!-- Twitter Widget
     =================================================================== -->
-    <section class='col-lg-4'>
+    <section class='col-xs-4'>
       <a class='twitter-timeline' href='//twitter.com/grapplstatus' data-widget-id='655472846970449920'>Tweets by @grapplstatus</a>
       <script>
         ! function(d, s, id) {

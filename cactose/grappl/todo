@@ -2,4 +2,11 @@ why waste a user's time querying backend when frontend js could provide errors a
 passwords do not match - backend responds with page detailing error
 empty password or username - backend hangs eternally
 
-col-lg col-sm col-xs etc
+capsLockTest is broken
+- event.charCode in chrome? no event.key?
+
+weird submit button issue on firefox?
+
+'NetworkError: A network error occurred.'?
+
+MOAR STYLING

@@ -1,8 +1,1 @@
-header/footer handling
-- needs to check user id in document.cookie and respond with a dynamic account replacement or do nothing if document.cookie contains an id='0'
-
-Content is stored inside a container that is fairly simple to replicate
-Page Layout:
-- Header - with appropriate changes if user id is not '0'
-- Content
-- Footer - served dynamically
+/servers

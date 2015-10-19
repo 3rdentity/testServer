@@ -1,0 +1,29 @@
+<!-- Content
+======================================================================= -->
+<main class='container'>
+  <div class='row'>
+    <div class='col-xs-12'>
+      <h1>Welcome, Dynamic Username!</h1>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-6'>
+      <h3>Tester Status</h3>
+      <!-- testerStatus is dynamic and will change depending on the user -->
+      <div class='testerStatus'>
+        <h4 class='testerStatusPos'>You are a Dynamic Tester Type</h4>
+        <p>You may set a static port</p>
+        <form action='/setport' method='post'>
+          <input type='text' name='port' placeholder='Dynamic User Port' />
+          <button id='btnTesterUpdate' class='btn' type='submit'>Update</button>
+        </form>
+      </div>
+    </div>
+    <div class='col-xs-6'>
+      <h3>Stats</h3>
+      <p>Connections routed: Dynamic Data</p>
+      <p>Blocks routed in: Dynamic Data</p>
+      <p>Blocks routed out: Dynamic Data</p>
+    </div>
+  </div>
+</main>

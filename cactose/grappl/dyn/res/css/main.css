@@ -103,6 +103,7 @@ nav a:hover, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:fo
 
 main {
   margin-bottom: 50px;
+  padding: 10px;
   border-radius: 10px;
   background-color: hsla(0, 0%, 0%, 0.5);
 }
@@ -126,9 +127,6 @@ footer a {
 #modalDonate .modal-body {
   text-align: center;
 }
-#modalDonate .modal-body table {
-  margin: auto;
-}
 #modalLicense .modal-body ul, #modalLicense .modal-body h4 {
   text-align: center;
   list-style-type: none;
@@ -143,15 +141,18 @@ footer a {
 .modal .close {
   color: #FFF;
 }
-.modal .btn {
+.modal .btn, #btnTesterDonate, #btnTesterUpdate {
   background-color: hsl(202, 88%, 63%);
   color: hsl(0, 0%, 13%);
 }
-.modal .btn:hover {
+.modal .btn:hover, #btnTesterDonate:hover, #btnTesterUpdate:hover {
   background-color: hsl(202, 57%, 51%);
 }
-.modal .btn:active {
+.modal .btn:active, #btnTesterDonate:active, #btnTesterUpdate:active {
   background-color: hsl(201, 59%, 45%);
+}
+.donateForm {
+  margin: auto;
 }
 .err {
   float: left;
@@ -163,4 +164,24 @@ footer a {
 .carousel-inner > .item > img {
     margin: auto;
     padding-top: 150px;
+}
+.testerStatus {
+  margin: 0px 0px 10px 0px;
+  padding: 10px;
+  background-color: hsla(202, 24%, 30%, 0.7);
+  border-radius: 10px;
+  border-style: dotted;
+  border-width: 1px;
+  border-color: hsl(0, 0%, 87%);
+}
+.testerStatusNeg {
+  color: hsla(30, 85%, 70%, 0.7);
+  font-weight: bold;
+}
+.testerStatusPos {
+  color: green;hsla(111, 42%, 44%, 0.7)
+}
+.testerStatus input {
+  height: 40px;
+  color: hsl(0, 0, 0%);
 }
