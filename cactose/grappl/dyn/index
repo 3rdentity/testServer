@@ -7,7 +7,7 @@
         <h1>Grappl is a tool that lets you host virtually any type of server anywhere, with no port forwarding!</h1>
         <div class='row'>
           <div class='col-md-6'>
-            <h3>Better yet, it's completely free software, and the client is licensed <a href='http://www.gnu.org/licenses/lgpl-2.1' target='_blank'>LGPL v.2.1</a>.</h3>
+            <h3>Better yet, it's completely free software, and the client is licensed <a href='//www.gnu.org/licenses/lgpl-2.1' target='_blank'>LGPL v.2.1</a>.</h3>
           </div>
           <div class='col-md-6'>
             <h3>How to Run</h3>
