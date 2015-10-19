@@ -35,7 +35,7 @@
           });
           $('#modalDonate').on('shown.bs.modal', function modalDonateFocus() {
             $('#inputDonate').focus();
-          })
+          });
           $('#btnRegister').click(function clickRegister(event) {
             event.preventDefault();
             $('#modalRegister').modal('show');
