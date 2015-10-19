@@ -1,11 +1,3 @@
-styling - in progress
-  - modals
-  - banner
-  - content
-  - imgCarousel
-  - main colours
-  - fx
-
 why waste a user's time querying backend when frontend js could provide errors about:
 passwords do not match - backend responds with page detailing error
 empty password or username - backend hangs eternally
