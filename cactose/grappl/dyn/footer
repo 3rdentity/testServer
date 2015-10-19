@@ -142,17 +142,29 @@
                   default:
                     /*
                     A login response will contain three parameters in a string:
-                    'msg;cookie;redirecton'
-                    'Account registered!;1442846245957;/account'
+                    'msg;redirecton;cookie,key,value,domain,path,expiry'
+                    'Account registered!;/account;id,654654,grappl.io,/,0'
+                    In the case that domain, path, or expiry are not provided they will be automatically set
                     */
                     var arr = msg.split(';');
                     msg = arr[0]; /* Set msg to actual message from response */
-                    var c = arr[1] /* Set c to cookie provided in response */
-                    var r = arr[2] /* Set r to redirecton page provided in response */
+                    var r = arr[1]; /* Set r to redirecton page provided in response */
+                    var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
+                    var cK = cAArr[0]; /* Set cK to cookie key provided in response */
+                    var cV = cArr[1]; /* Set cV to cookie value provided in response */
+                    var cD = cArr[2] || grappl.io; /* Set cD to cookie domain provided in response or null*/
+                    var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
+                    var cT = cArr[4] || 0; /* Set cT to cookie expiry provided in response or 0*/
+                    */ Set cT to a proper expiry format */
+                    if(cT) {
+                      var d = new Date();
+                      d.setTime(d.getTime() + (cT*24*60*60*1000));
+                      cT = "expires " + d.toUTCString();
+                    }
                     $('#modalRegister .err').html(msg)
                       .fadeIn()
                       .delay(1000, function CBLogin() {
-                        document.cookie = c; /* Set user cookie */
+                        document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
                         window.location.href = r; /* Redirect user */
                       });
                 }
@@ -215,17 +227,29 @@
                   default:
                     /*
                     A login response will contain three parameters in a string:
-                    'msg;cookie;redirecton'
-                    'Welcome, testificatealice;1442846245957;/account'
+                    'msg;redirecton;cookie,key,value,domain,path,expiry'
+                    'Welcome DynamicNameHere!;/account;id,654654,grappl.io,/,0'
+                    In the case that domain, path, or expiry are not provided they will be automatically set
                     */
                     var arr = msg.split(';');
                     msg = arr[0]; /* Set msg to actual message from response */
-                    var c = arr[1] /* Set c to cookie provided in response */
                     var r = arr[2] /* Set r to redirecton page provided in response */
+                    var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
+                    var cK = cAArr[0]; /* Set cK to cookie key provided in response */
+                    var cV = cArr[1]; /* Set cV to cookie value provided in response */
+                    var cD = cArr[2] || grappl.io; /* Set cD to cookie domain provided in response or null*/
+                    var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
+                    var cT = cArr[4] || 0; /* Set cT to cookie decay time provided in response or 0*/
+                    */ Set cT to a proper decay time format */
+                    if(cT) {
+                      var d = new Date();
+                      d.setTime(d.getTime() + (cT*24*60*60*1000));
+                      cT = "expires " + d.toUTCString();
+                    }
                     $('#modalLogin .err').html(msg)
                       .fadeIn()
                       .delay(1000, function CBLogin() {
-                        document.cookie = c; /* Set user cookie */
+                        document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
                         window.location.href = r; /* Redirect user */
                       });
                 }
