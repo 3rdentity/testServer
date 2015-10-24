@@ -31,10 +31,10 @@
           </div>
           <div class='modal-body'>
             <p>You can donate any amount you want, any help is appreciated!</p>
-            <p>If you donate $8 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
+            <p>If you donate $5 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
             <p>(Beta Tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
             <!-- PayPal Form -->
-            <form role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+            <form method='post' role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
               <input type='hidden' name='cmd' value='_donations' />
               <input type='hidden' name='business' value='8U9DK42DS2US2' />
               <input type='hidden' name='lc' value='US' />
@@ -42,7 +42,7 @@
               <input type='hidden' name='button_subtype' value='services' />
               <input type='hidden' name='currency_code' value='USD' />
               <input type='hidden' name='bn' value='PP-BuyNowBF:btn_buynow_LG.gif:NonHosted' />
-              <table>
+              <table class='donateForm'>
                 <tr>
                   <td>
                     <input type='hidden' name='on0' value='Username' />
@@ -75,7 +75,7 @@
             <h4 class='modal-title'>Register</h4>
           </div>
           <div class='modal-body'>
-            <form role='form'>
+            <form method='post' role='form'>
               <div class='form-group'>
                 <label class='control-label' for='modalRegisterUser'>Username</label>
                 <input id='modalRegisterUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
@@ -107,7 +107,7 @@
             <h4 class='modal-title'>Login</h4>
           </div>
           <div class='modal-body'>
-            <form role='form'>
+            <form method='post' role='form'>
               <div class='form-group'>
                 <label class='control-label' for='modalLoginUser'>Username</label>
                 <input id='modalLoginUser' class='form-control' type='text' name='user' maxlength='100' role='textbox' />
@@ -116,6 +116,7 @@
                 <label class='control-label' for='modalLoginPass'>Password</label>
                 <input id='modalLoginPass' class='form-control' type='password' name='pass' maxlength='100' role='textbox' />
               </div>
+            </form>
           </div>
           <div class='modal-footer'>
             <p class='err'></p>
@@ -144,8 +145,8 @@
             <ul>
               <li><a href='//github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
               <li><a href='//jquery.org/license/' target='_blank'>jQuery</a></li>
-              <li><a href='res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
-              <li><a href='res/vendor/Open_Sans/LICENSE.txt' target='_blank'>res/vendor/Open_Sans/LICENSE.txt</a></li>
+              <li><a href='/res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
+              <li><a href='/res/vendor/Open_Sans/LICENSE.txt' target='_blank'>res/vendor/Open_Sans/LICENSE.txt</a></li>
             </ul>
           </div>
           <div class='modal-footer'>

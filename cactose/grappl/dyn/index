@@ -39,16 +39,16 @@
       <!-- Wrapper for slides -->
       <div class='carousel-inner' role='listbox'>
         <div class='item active'>
-          <img src='res/img/normalGUI.png' alt='Normal GUI' width='70%'>
+          <img src='/res/img/normalGUI.png' alt='Normal GUI' width='70%'>
         </div>
         <div class='item'>
-          <img src='res/img/console.png' alt='Console' width='100%'>
+          <img src='/res/img/console.png' alt='Console' width='100%'>
         </div>
         <div class='item'>
-          <img src='res/img/advancedGUI.png' alt='Advanced GUI' width='100%'>
+          <img src='/res/img/advancedGUI.png' alt='Advanced GUI' width='100%'>
         </div>
         <div class='item'>
-          <img src='res/img/httpDebug.png' alt='HTTP Debug' width='100%'>
+          <img src='/res/img/httpDebug.png' alt='HTTP Debug' width='100%'>
         </div>
       </div>
       <!-- Left and right controls -->
