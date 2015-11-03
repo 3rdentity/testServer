@@ -31,7 +31,7 @@
           </div>
           <div class='modal-body'>
             <p>You can donate any amount you want, any help is appreciated!</p>
-            <p>If you donate $5 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
+            <p>If you donate $8 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
             <p>(Beta Tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
             <!-- PayPal Form -->
             <form method='post' role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
@@ -146,7 +146,7 @@
               <li><a href='//github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
               <li><a href='//jquery.org/license/' target='_blank'>jQuery</a></li>
               <li><a href='/res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
-              <li><a href='/res/vendor/Open_Sans/LICENSE.txt' target='_blank'>res/vendor/Open_Sans/LICENSE.txt</a></li>
+              <li><a href='/res/vendor/Open_Sans/LICENSE.txt' target='_blank'>Open Sans</a></li>
             </ul>
           </div>
           <div class='modal-footer'>
