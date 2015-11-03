@@ -6,5 +6,7 @@ condense functions/refactor
 
 MOAR STYLING
  - fix banner underlining and collapsing and dropdowns
-
-/servers
+ - /index seems compressed
+ - /account and /testerAccount are very empty and need more styling
+ - /servers needs to actually be stylized
+ - modals need better styling
