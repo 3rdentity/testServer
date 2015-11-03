@@ -2,6 +2,8 @@ why waste a normal user's time querying backend when frontend js could provide e
 passwords do not match - backend responds with page detailing error
 empty password or username - backend hangs eternally
 
+- limit ability to submit forms using 'Enter' while ajax is waiting for response
+
 condense functions/refactor
 
 MOAR STYLING
