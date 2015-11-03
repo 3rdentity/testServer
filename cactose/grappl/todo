@@ -1,12 +1,10 @@
-why waste a user's time querying backend when frontend js could provide errors about:
+why waste a normal user's time querying backend when frontend js could provide errors about:
 passwords do not match - backend responds with page detailing error
 empty password or username - backend hangs eternally
 
-capsLockTest is broken
-- event.charCode in chrome? no event.key?
-
-weird submit button issue on firefox?
-
-'NetworkError: A network error occurred.'?
+condense functions/refactor
 
 MOAR STYLING
+ - fix banner underlining and collapsing and dropdowns
+
+/servers
