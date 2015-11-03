@@ -7,11 +7,11 @@
     <meta charset='utf-8'>
     <meta name='author' content='cactose + shasharala'>
     <meta name='description' content=''>
-    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
-    <link rel='icon' type='image/x-icon' href='//grappl.io:888/html/grapplicon.ico'>
-    <link rel='stylesheet' type='text/css' href='/res/vendor/normalize.min.css'>
-    <link rel='stylesheet' type='text/css' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href='/res/css/main.css'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
+    <link rel='icon' type='image/x-icon' href='http://grappl.io:888/html/grapplicon.ico'>
+    <link rel='stylesheet' type='text/css' href='res/vendor/normalize.min.css'>
+    <link rel='stylesheet' type='text/css' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='res/css/main.css'>
     <title>Grappl - You are the cloud now</title>
 
   </head>
@@ -31,10 +31,10 @@
           </div>
           <div class='modal-body'>
             <p>You can donate any amount you want, any help is appreciated!</p>
-            <p>If you donate $5 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
+            <p>If you donate $8 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
             <p>(Beta Tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
             <!-- PayPal Form -->
-            <form method='post' role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+            <form method='post' role='form' action='http://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
               <input type='hidden' name='cmd' value='_donations' />
               <input type='hidden' name='business' value='8U9DK42DS2US2' />
               <input type='hidden' name='lc' value='US' />
@@ -57,8 +57,8 @@
                   </td>
                 </tr>
               </table>
-              <input type='image' src='//www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
-              <img alt='' border='0' src='//www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
+              <input type='image' src='http://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!' />
+              <img alt='' border='0' src='http://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1' />
             </form>
 
           </div>
@@ -143,14 +143,14 @@
             <hr/>
             <h4>Licensed Software</h4>
             <ul>
-              <li><a href='//github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
-              <li><a href='//jquery.org/license/' target='_blank'>jQuery</a></li>
-              <li><a href='/res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
-              <li><a href='/res/vendor/Open_Sans/LICENSE.txt' target='_blank'>res/vendor/Open_Sans/LICENSE.txt</a></li>
+              <li><a href='http://github.com/twbs/bootstrap/blob/master/LICENSE' target='_blank'>Bootstrap</a></li>
+              <li><a href='http://jquery.org/license/' target='_blank'>jQuery</a></li>
+              <li><a href='res/vendor/normalize/LICENSE.md' target='_blank'>Normalize</a></li>
+              <li><a href='res/vendor/Open_Sans/LICENSE.txt' target='_blank'>Open Sans</a></li>
             </ul>
           </div>
           <div class='modal-footer'>
-            Website design by <a href='//www.shasharala.net' rel='author'>shasharala</a>
+            Website design by <a href='http://www.shasharala.net' rel='author'>shasharala</a>
           </div>
         </div>
       </div>
@@ -169,7 +169,7 @@
             <span class='icon-bar'></span>
           </button>
           <a class='navbar-brand' href='/' rel='prefetch'>
-            <img id='logo' src='//grappl.io:888/html/logo.png' alt='grappl logo' />
+            <img id='logo' src='http://grappl.io:888/html/logo.png' alt='grappl logo' />
             <span id='logoTxt'>You are the cloud now</span>
           </a>
         </div>
@@ -183,8 +183,8 @@
                 <span class='caret'></span>
               </a>
               <ul class='dropdown-menu'>
-                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
-                <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
+                <li><a role='button' href='http://grappl.io:888/html/GrapplLauncher.exe'>Windows</a></li>
+                <li><a role='button' href='http://grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
               </ul>
             </li>
             <li class='dropdown'>
@@ -205,7 +205,7 @@
               <ul class='dropdown-menu'>
                 <li><a role='button' href='/status' rel='prefetch'>Server Status</a></li>
                 <li><a role='button' href='/faq' rel='prefetch'>FAQ</a></li>
-                <li><a role='button' href='//github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
+                <li><a role='button' href='http://github.com/Cactose/Grappl' rel='prefetch'>Source Code</a></li>
               </ul>
             </li>
           </ul>
