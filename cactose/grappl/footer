@@ -15,17 +15,146 @@
     Placed at the end of the document so the page loads faster -->
     <!-- jQuery CDN Fallback-->
     <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
-    <script>window.jQuery || document.write('<script src="/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src='/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
 
     <!-- BootstrapJS CDN Fallback -->
     <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-    <script>window.jQuery.fn.modal || document.write('<script src="/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
+    <script>window.jQuery.fn.modal || document.write('<script src='/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
     <script>
       (function jQueryAlias($) {
         $(document).ready(function onReady() {
           /* BootstrapCSS CDN Fallback */
           if ($('html').css('font-family') !== 'sans-serif') {
-              $('head').append('<link rel="stylesheet" href="/res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css">');
+              $('head').append('<link rel="stylesheet" href='/res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css">');
+          }
+
+          /* Functions */
+          Ajax = {
+            parse: function ajaxParse(msg) {
+              /*
+              A response will contain three parameters in a string:
+              'msg;redirecton;cookie,key,value,domain,path,expiry'
+              'Account registered!;/account;id,654654,grappl.io,/,0'
+              In the case that domain, path, or expiry are not provided they will be automatically set
+              */
+              var arr = msg.split(';');
+              msg = arr[0]; /* Set msg to actual message from response */
+              var r = arr[1]; /* Set r to redirecton page provided in response */
+              var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
+              var cK = cArr[0]; /* Set cK to cookie key provided in response */
+              var cV = cArr[1]; /* Set cV to cookie value provided in response */
+              var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
+              var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
+              var cT = cArr[4] || 0; /* Set cT to cookie expiry provided in response or 0*/
+              /* Set cT to a proper expiry format */
+              if (cT) {
+                var d = new Date();
+                d.setTime(d.getTime() + (cT*24*60*60*1000));
+                cT = "expires " + d.toUTCString();
+              }
+              $('#modalRegister .ajaxRes').html(msg)
+                .fadeIn()
+                .delay(1000, function CBLogin() {
+                  document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
+                  window.location.href = r; /* Redirect user */
+                });
+            },
+            res: function ajaxResponse(elem, msg) {
+              if (msg) {
+                $(elem).html(msg);
+              }
+              else {
+                $(elem).html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.');
+              }
+              $(elem).fadeIn(function returnSubmitControl() {
+                  /* User input has been handled so return control to the user and reset the submission button */
+                  if (elem === '#modalRegister .ajaxRes') {
+                    $('#submitRegister').prop('disabled', false)
+                      .html('Submit');
+                  }
+                  else if (elem === '#modalLogin .ajaxRes') {
+                    $('#submitLogin').prop('disabled', false)
+                      .html('Submit');
+                  }
+                })
+                .delay(1500)
+                .fadeOut();
+            },
+            register: function ajaxRegister(event) {
+              event.preventDefault();
+              /* Confirm that user input is being handled and disable button till user input is processed */
+              $('#submitRegister').prop('disabled', true)
+                .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+              $.ajax({
+                type: 'POST',
+                url: '/registerhandler',
+                data: $('#modalRegister form').serialize(),
+                success: function(msg) {
+                  switch (msg) {
+                    /*
+                    This case could be one word and a custom message could be set to $('modalRegister .ajaxRes').html in response
+                    Example:
+                    case 'nameExists':
+                      Ajax.res('#modalRegister .ajaxRes', 'An account with that name already exists.');
+                      break;
+                    */
+                    case 'An account with that name already exists.':
+                      Ajax.res('modalRegister .ajaxRes', msg);
+                      break;
+                    case 'The passwords you have entered do not match.':
+                      Ajax.res('modalRegister .ajaxRes', msg);
+                      break;
+                    default:
+                      Ajax.parse(msg);
+                  }
+                  $('#modalRegister .ajaxRes').html(msg)
+                    .fadeIn(function returnSubmitControl() {
+                      /* User input has been handled so return control to the user and reset the submission button */
+                      $('#submitRegister').prop('disabled', false)
+                        .html('Submit');
+                    })
+                    .delay(1500)
+                    .fadeOut();
+                },
+                error: function ajaxRegisterErr() {
+                  Ajax.res('#modalRegister .ajaxRes');
+                }
+              });
+            },
+            login: function ajaxLogin(event) {
+              event.preventDefault();
+              /* Confirm that user input is being handled and disable button till user input is processed */
+              $('#submitLogin').prop('disabled', true)
+                .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+              $.ajax({
+                type: 'POST',
+                url: '/auth',
+                data: $('#modalLogin form').serialize(),
+                success: function(msg) {
+                  /*
+                  It is standard for the backend to not inform the user what information exactly they have provided is wrong
+                  In regard to this custom keep responses to a minimum and do not seperate information about username or password
+                  */
+                  switch (msg) {
+                    /*
+                    This case could be one word and a custom message could be set to $('modalLogin .ajaxRes').html in response
+                    Example:
+                    case 'error':
+                      Ajax.res('#modalLogin .ajaxRes', 'Incorrect username or password.');
+                      break;
+                    */
+                    case 'Incorrect username or password.':
+                      Ajax.res('#modalLogin .ajaxRes', msg);
+                      break;
+                    default:
+                      Ajax.parse(msg);
+                  }
+                },
+                error: function ajaxLoginErr() {
+                  Ajax.res('#modalLogin .ajaxRes');
+                }
+              });
+            }
           }
 
           /* Event Listeners */
@@ -59,13 +188,13 @@
             if ((s.toUpperCase() === s && s.toLowerCase() !== s && !event.shiftKey) ||
             (s.toUpperCase() !== s && s.toLowerCase() === s && event.shiftKey)) {
               capsStatus = true;
-              $('#modalRegister .err, #modalLogin .err').html('Caps Lock is on!')
+              $('#modalRegister .ajaxRes, #modalLogin .ajaxRes').html('Caps Lock is on!')
               .show();
             }
             else if ((s.toLowerCase() === s && s.toUpperCase() !== s && !event.shiftKey) ||
             (s.toLowerCase() !== s && s.toUpperCase() === s && event.shiftKey)) {
               capsStatus = false;
-              $('#modalRegister .err, #modalLogin .err').html('')
+              $('#modalRegister .ajaxRes, #modalLogin .ajaxRes').html('')
               .hide();
             }
           });
@@ -75,12 +204,12 @@
               if (typeof(capsStatus) === 'boolean'){
                 if (capsStatus === true) {
                   capsStatus = false;
-                  $('#modalRegister .err, #modalLogin .err').html('')
+                  $('#modalRegister .ajaxRes, #modalLogin .ajaxRes').html('')
                   .hide();
                 }
                 else {
                   capsStatus = true;
-                  $('#modalRegister .err, #modalLogin .err').html('Caps Lock is on!')
+                  $('#modalRegister .ajaxRes, #modalLogin .ajaxRes').html('Caps Lock is on!')
                   .show();
                 }
               }
@@ -90,7 +219,7 @@
             /* If window is inactive then status of Caps Lock key is indeterminate */
             if (typeof(capsStatus) === 'boolean') {
               capsStatus = null;
-              $('#modalRegister .err, #modalLogin .err').hide();
+              $('#modalRegister .ajaxRes, #modalLogin .ajaxRes').hide();
             }
           });
 
@@ -101,342 +230,19 @@
           $('#modalRegister input').keydown(function submitRegisterEnter(event) {
             if (event.key === 'Enter' || event.which === 13) { // Backwards compatibility for browsers that have not switched to event.key yet
               event.preventDefault();
-              /* Confirm that user input is being handled and disable button till user input is processed */
-              $('#submitRegister').prop('disabled', true)
-                .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
-              $.ajax({
-                type: 'POST',
-                url: '/registerhandler',
-                data: $('#modalRegister form').serialize(),
-                success: function(msg) {
-                  switch (msg) {
-                    /*
-                    This case could be one word and a custom message could be set to $('modalRegister .err').html in response
-                    Example:
-                    case 'error':
-                      $('#modalRegister .err').html('An account with that name already exists.')
-                        .fadeIn()
-                        .delay(1500)
-                        .fadeOut()
-                      break;
-                    */
-                    case 'An account with that name already exists.':
-                      $('#modalRegister .err').html(msg)
-                        .fadeIn(function returnSubmitControl() {
-                          /* User input has been handled so return control to the user and reset the submission button */
-                          $('#submitRegister').prop('disabled', false)
-                            .html('Submit');
-                        })
-                        .delay(1500)
-                        .fadeOut();
-                      break;
-                    case 'The passwords you have entered do not match.':
-                      $('#modalRegister .err').html(msg)
-                        .fadeIn(function returnSubmitControl() {
-                          /* User input has been handled so return control to the user and reset the submission button */
-                          $('#submitRegister').prop('disabled', false)
-                            .html('Submit');
-                        })
-                        .delay(1500)
-                        .fadeOut();
-                      break;
-                    default:
-                      /*
-                      A login response will contain three parameters in a string:
-                      'msg;redirecton;cookie,key,value,domain,path,expiry'
-                      'Account registered!;/account;id,654654,grappl.io,/,0'
-                      In the case that domain, path, or expiry are not provided they will be automatically set
-                      */
-                      var arr = msg.split(';');
-                      msg = arr[0]; /* Set msg to actual message from response */
-                      var r = arr[1]; /* Set r to redirecton page provided in response */
-                      var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
-                      var cK = cArr[0]; /* Set cK to cookie key provided in response */
-                      var cV = cArr[1]; /* Set cV to cookie value provided in response */
-                      var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
-                      var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
-                      var cT = cArr[4] || 0; /* Set cT to cookie expiry provided in response or 0*/
-                      /* Set cT to a proper expiry format */
-                      if (cT) {
-                        var d = new Date();
-                        d.setTime(d.getTime() + (cT*24*60*60*1000));
-                        cT = "expires " + d.toUTCString();
-                      }
-                      $('#modalRegister .err').html(msg)
-                        .fadeIn()
-                        .delay(1000, function CBLogin() {
-                          document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
-                          window.location.href = r; /* Redirect user */
-                        });
-                  }
-                  $('#modalRegister .err').html(msg)
-                    .fadeIn(function returnSubmitControl() {
-                      /* User input has been handled so return control to the user and reset the submission button */
-                      $('#submitRegister').prop('disabled', false)
-                        .html('Submit');
-                    })
-                    .delay(1500)
-                    .fadeOut();
-                },
-                error: function submitRegisterError() {
-                  $('#modalRegister .err').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
-                    .fadeIn(function returnSubmitControl() {
-                      /* User input has been handled so return control to the user and reset the submission button */
-                      $('#submitRegister').prop('disabled', false)
-                        .html('Submit');
-                    })
-                    .delay(1500)
-                    .fadeOut();
-                }
-              });
+              Ajax.register(event);
             }
           });
           $('#submitRegister').click(function submitRegisterClick(event) {
-            event.preventDefault();
-            /* Confirm that user input is being handled and disable button till user input is processed */
-            $('#submitRegister').prop('disabled', true)
-              .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
-            $.ajax({
-              type: 'POST',
-              url: '/registerhandler',
-              data: $('#modalRegister form').serialize(),
-              success: function(msg) {
-                switch (msg) {
-                  /*
-                  This case could be one word and a custom message could be set to $('modalRegister .err').html in response
-                  Example:
-                  case 'error':
-                    $('#modalRegister .err').html('An account with that name already exists.')
-                      .fadeIn()
-                      .delay(1500)
-                      .fadeOut()
-                    break;
-                  */
-                  case 'An account with that name already exists.':
-                    $('#modalRegister .err').html(msg)
-                      .fadeIn(function returnSubmitControl() {
-                        /* User input has been handled so return control to the user and reset the submission button */
-                        $('#submitRegister').prop('disabled', false)
-                          .html('Submit');
-                      })
-                      .delay(1500)
-                      .fadeOut();
-                    break;
-                  case 'The passwords you have entered do not match.':
-                    $('#modalRegister .err').html(msg)
-                      .fadeIn(function returnSubmitControl() {
-                        /* User input has been handled so return control to the user and reset the submission button */
-                        $('#submitRegister').prop('disabled', false)
-                          .html('Submit');
-                      })
-                      .delay(1500)
-                      .fadeOut();
-                    break;
-                  default:
-                    /*
-                    A login response will contain three parameters in a string:
-                    'msg;redirecton;cookie,key,value,domain,path,expiry'
-                    'Account registered!;/account;id,654654,grappl.io,/,0'
-                    In the case that domain, path, or expiry are not provided they will be automatically set
-                    */
-                    var arr = msg.split(';');
-                    msg = arr[0]; /* Set msg to actual message from response */
-                    var r = arr[1]; /* Set r to redirecton page provided in response */
-                    var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
-                    var cK = cArr[0]; /* Set cK to cookie key provided in response */
-                    var cV = cArr[1]; /* Set cV to cookie value provided in response */
-                    var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
-                    var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
-                    var cT = cArr[4] || 0; /* Set cT to cookie expiry provided in response or 0*/
-                    /* Set cT to a proper expiry format */
-                    if (cT) {
-                      var d = new Date();
-                      d.setTime(d.getTime() + (cT*24*60*60*1000));
-                      cT = "expires " + d.toUTCString();
-                    }
-                    $('#modalRegister .err').html(msg)
-                      .fadeIn()
-                      .delay(1000, function CBLogin() {
-                        document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
-                        window.location.href = r; /* Redirect user */
-                      });
-                }
-                $('#modalRegister .err').html(msg)
-                  .fadeIn(function returnSubmitControl() {
-                    /* User input has been handled so return control to the user and reset the submission button */
-                    $('#submitRegister').prop('disabled', false)
-                      .html('Submit');
-                  })
-                  .delay(1500)
-                  .fadeOut();
-              },
-              error: function submitRegisterError() {
-                $('#modalRegister .err').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
-                  .fadeIn(function returnSubmitControl() {
-                    /* User input has been handled so return control to the user and reset the submission button */
-                    $('#submitRegister').prop('disabled', false)
-                      .html('Submit');
-                  })
-                  .delay(1500)
-                  .fadeOut();
-              }
-            });
+            Ajax.register(event);
           });
           $('#modalLogin input').keydown(function submitLoginEnter(event) {
             if (event.key === 'Enter' || event.which === 13) { // Backwards compatibility for browsers that have not switched to event.key yet
-              event.preventDefault();
-              /* Confirm that user input is being handled and disable button till user input is processed */
-              $('#submitLogin').prop('disabled', true)
-                .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
-              $.ajax({
-                type: 'POST',
-                url: '/auth',
-                data: $('#modalLogin form').serialize(),
-                success: function(msg) {
-                  /*
-                  It is standard for the backend to not inform the user what information exactly they have provided is wrong
-                  In regard to this custom keep responses to a minimum and do not seperate information about username or password
-                  */
-                  switch (msg) {
-                    /*
-                    This case could be one word and a custom message could be set to $('modalLogin p').html in response
-                    Example:
-                    case 'error':
-                      $('#modalLogin .err').html('Incorrect username or password.')
-                        .fadeIn()
-                        .delay(1500)
-                        .fadeOut()
-                      break;
-                    */
-                    case 'Incorrect username or password.':
-                      $('#modalLogin .err').html(msg)
-                        .fadeIn(function returnSubmitControl() {
-                          /* User input has been handled so return control to the user and reset the submission button */
-                          $('#submitLogin').prop('disabled', false)
-                            .html('Submit');
-                        })
-                        .delay(1500)
-                        .fadeOut();
-                      break;
-                    default:
-                      /*
-                      A login response will contain three parameters in a string:
-                      'msg;redirecton;cookie,key,value,domain,path,expiry'
-                      'Welcome DynamicNameHere!;/account;id,654654,grappl.io,/,0'
-                      In the case that domain, path, or expiry are not provided they will be automatically set
-                      */
-                      var arr = msg.split(';');
-                      msg = arr[0]; /* Set msg to actual message from response */
-                      var r = arr[1] /* Set r to redirecton page provided in response */
-                      var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
-                      var cK = cArr[0]; /* Set cK to cookie key provided in response */
-                      var cV = cArr[1]; /* Set cV to cookie value provided in response */
-                      var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
-                      var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
-                      var cT = cArr[4] || 0; /* Set cT to cookie decay time provided in response or 0*/
-                      /* Set cT to a proper decay time format */
-                      if (cT) {
-                        var d = new Date();
-                        d.setTime(d.getTime() + (cT*24*60*60*1000));
-                        cT = "expires " + d.toUTCString();
-                      }
-                      $('#modalLogin .err').html(msg)
-                        .fadeIn()
-                        .delay(1000, function CBLogin() {
-                          document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
-                          window.location.href = r; /* Redirect user */
-                        });
-                  }
-                },
-                error: function submitLoginError() {
-                  $('#modalLogin .err').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
-                    .fadeIn(function returnSubmitControl() {
-                      /* User input has been handled so return control to the user and reset the submission button */
-                      $('#submitLogin').prop('disabled', false)
-                        .html('Submit');
-                    })
-                    .delay(1500)
-                    .fadeOut();
-                }
-              });
+              Ajax.login(event);
             }
           });
           $('#submitLogin').click(function submitLoginClick(event) {
-            event.preventDefault();
-            /* Confirm that user input is being handled and disable button till user input is processed */
-            $('#submitLogin').prop('disabled', true)
-              .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
-            $.ajax({
-              type: 'POST',
-              url: '/auth',
-              data: $('#modalLogin form').serialize(),
-              success: function(msg) {
-                /*
-                It is standard for the backend to not inform the user what information exactly they have provided is wrong
-                In regard to this custom keep responses to a minimum and do not seperate information about username or password
-                */
-                switch (msg) {
-                  /*
-                  This case could be one word and a custom message could be set to $('modalLogin p').html in response
-                  Example:
-                  case 'error':
-                    $('#modalLogin .err').html('Incorrect username or password.')
-                      .fadeIn()
-                      .delay(1500)
-                      .fadeOut()
-                    break;
-                  */
-                  case 'Incorrect username or password.':
-                    $('#modalLogin .err').html(msg)
-                      .fadeIn(function returnSubmitControl() {
-                        /* User input has been handled so return control to the user and reset the submission button */
-                        $('#submitLogin').prop('disabled', false)
-                          .html('Submit');
-                      })
-                      .delay(1500)
-                      .fadeOut();
-                    break;
-                  default:
-                    /*
-                    A login response will contain three parameters in a string:
-                    'msg;redirecton;cookie,key,value,domain,path,expiry'
-                    'Welcome DynamicNameHere!;/account;id,654654,grappl.io,/,0'
-                    In the case that domain, path, or expiry are not provided they will be automatically set
-                    */
-                    var arr = msg.split(';');
-                    msg = arr[0]; /* Set msg to actual message from response */
-                    var r = arr[1] /* Set r to redirecton page provided in response */
-                    var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
-                    var cK = cArr[0]; /* Set cK to cookie key provided in response */
-                    var cV = cArr[1]; /* Set cV to cookie value provided in response */
-                    var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
-                    var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
-                    var cT = cArr[4] || 0; /* Set cT to cookie decay time provided in response or 0*/
-                    /* Set cT to a proper decay time format */
-                    if (cT) {
-                      var d = new Date();
-                      d.setTime(d.getTime() + (cT*24*60*60*1000));
-                      cT = "expires " + d.toUTCString();
-                    }
-                    $('#modalLogin .err').html(msg)
-                      .fadeIn()
-                      .delay(1000, function CBLogin() {
-                        document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
-                        window.location.href = r; /* Redirect user */
-                      });
-                }
-              },
-              error: function submitLoginError() {
-                $('#modalLogin .err').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
-                  .fadeIn(function returnSubmitControl() {
-                    /* User input has been handled so return control to the user and reset the submission button */
-                    $('#submitLogin').prop('disabled', false)
-                      .html('Submit');
-                  })
-                  .delay(1500)
-                  .fadeOut();
-              }
-            });
+            Ajax.login(event);
           });
         });
       })(window.jQuery);
