@@ -4,8 +4,6 @@ empty password or username - backend hangs eternally
 
 application links to /register. consider loading modal through a get request or getting rid of modals and using actual pages? using both means modifying two or more places of code if one instance changes
 
-talk to cactose about dynamic file setup. modifying header and dynamicHeader for small changes is cumbersome when the very small change that dynamicHeader makes to header could be supplied in dynamicHeader
-
 MOAR STYLING
  - fix banner underlining and collapsing and dropdowns
  - /index seems compressed

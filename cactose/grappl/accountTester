@@ -1,0 +1,6 @@
+          <h4 class='testerStatusPos'>You are a <!-- Dyn_testerType --></h4>
+          <p>You may set a static port</p>
+          <form action='/setport' method='post' role='form'>
+            <input type='text' name='port' placeholder='<!-- Dyn_userPort -->' role='textbox'/>
+            <button id='btnTesterUpdate' class='btn' type='submit' role='button'>Update</button>
+          </form>

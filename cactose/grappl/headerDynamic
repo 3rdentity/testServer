@@ -187,16 +187,7 @@
                 <li><a role='button' href='//grappl.io:888/html/GrapplLauncher.jar'>Linux &amp; OSX</a></li>
               </ul>
             </li>
-            <li class='dropdown'>
-              <a role='button' class='dropdown-toggle' href='#' data-toggle='dropdown' aria-expanded='false'>
-                <span class='glyphicon glyphicon-user'></span> Account
-                <span class='caret'></span>
-              </a>
-              <ul class='dropdown-menu'>
-                <li><a role='button' id='btnRegister' href='#'>Register</a></li>
-                <li><a role='button' id='btnLogin' href='#'>Login</a></li>
-              </ul>
-            </li>
+            <!-- Dyn_header -->
             <li class='dropdown'>
               <a role='button' class='dropdown-toggle' href='#' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-alert'></span> Help

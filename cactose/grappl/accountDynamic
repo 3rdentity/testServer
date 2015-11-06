@@ -1,0 +1,23 @@
+    <!-- Content
+    ======================================================================= -->
+    <main class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <h1>Welcome, <!-- Dyn_username -->!</h1>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <h3>Tester Status</h3>
+          <div class='testerStatus'>
+            <!-- Dyn_testerData -->
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <h3>Stats</h3>
+          <p>Connections routed: <!-- Dyn_connRouted --></p>
+          <p>Blocks routed in: <!-- Dyn_blocksIn --></p>
+          <p>Blocks routed out: <!-- Dyn_blocksOut --></p>
+        </div>
+      </div>
+    </main>
