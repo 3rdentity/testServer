@@ -1,0 +1,178 @@
+
+
+
+    <!-- HOTFIX -->
+
+    <!-- Content
+    ======================================================================= -->
+    <center>Create Account
+      <form id='reg'>
+        <input type='text' placeholder='username' name='user'>
+        <br>
+        <input type='password' placeholder='password' name='pass'>
+        <br>
+        <input type='password' placeholder='confirm password' name='pass2'>
+      </form>
+      <button id='submitHotfix'>Submit</button>
+      <p id='response'></p>
+    </center>
+    <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script>window.jQuery || document.write('<script src="/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
+    <script>
+    $('#reg input').keydown(function submitLoginEnter(event) {
+            if (event.key === 'Enter' || event.which === 13) { // Backwards compatibility for browsers that have not switched to event.key yet
+              event.preventDefault();
+              /* Confirm that user input is being handled and disable button till user input is processed */
+              $('#submitHotfix').prop('disabled', true)
+                .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+              $.ajax({
+                type: 'POST',
+                url: '/auth',
+                data: $('#reg').serialize(),
+                success: function(msg) {
+                  /*
+                  It is standard for the backend to not inform the user what information exactly they have provided is wrong
+                  In regard to this custom keep responses to a minimum and do not seperate information about username or password
+                  */
+                  switch (msg) {
+                    /*
+                    This case could be one word and a custom message could be set to $('modalLogin p').html in response
+                    Example:
+                    case 'error':
+                      $('#modalLogin .err').html('Incorrect username or password.')
+                        .fadeIn()
+                        .delay(1500)
+                        .fadeOut()
+                      break;
+                    */
+                    case 'Incorrect username or password.':
+                      $('#response').html(msg)
+                        .fadeIn(function returnSubmitControl() {
+                          /* User input has been handled so return control to the user and reset the submission button */
+                          $('#submitHotfix').prop('disabled', false)
+                            .html('Submit');
+                        })
+                        .delay(1500)
+                        .fadeOut();
+                      break;
+                    default:
+                      /*
+                      A login response will contain three parameters in a string:
+                      'msg;redirecton;cookie,key,value,domain,path,expiry'
+                      'Welcome DynamicNameHere!;/account;id,654654,grappl.io,/,0'
+                      In the case that domain, path, or expiry are not provided they will be automatically set
+                      */
+                      var arr = msg.split(';');
+                      msg = arr[0]; /* Set msg to actual message from response */
+                      var r = arr[1] /* Set r to redirecton page provided in response */
+                      var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
+                      var cK = cArr[0]; /* Set cK to cookie key provided in response */
+                      var cV = cArr[1]; /* Set cV to cookie value provided in response */
+                      var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
+                      var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
+                      var cT = cArr[4] || 0; /* Set cT to cookie decay time provided in response or 0*/
+                      /* Set cT to a proper decay time format */
+                      if (cT) {
+                        var d = new Date();
+                        d.setTime(d.getTime() + (cT*24*60*60*1000));
+                        cT = "expires " + d.toUTCString();
+                      }
+                      $('#response').html(msg)
+                        .fadeIn()
+                        .delay(1000, function CBLogin() {
+                          document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
+                          window.location.href = r; /* Redirect user */
+                        });
+                  }
+                },
+                error: function submitLoginError() {
+                  $('#response').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                    .fadeIn(function returnSubmitControl() {
+                      /* User input has been handled so return control to the user and reset the submission button */
+                      $('#submitHotfix').prop('disabled', false)
+                        .html('Submit');
+                    })
+                    .delay(1500)
+                    .fadeOut();
+                }
+              });
+            }
+          });
+      $('#submitHotfix').click(function submitLogin(event) {
+            event.preventDefault();
+            /* Confirm that user input is being handled and disable button till user input is processed */
+            $('#submitHotfix').prop('disabled', true)
+              .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+            $.ajax({
+              type: 'POST',
+              url: '/auth',
+              data: $('#reg').serialize(),
+              success: function(msg) {
+                /*
+                It is standard for the backend to not inform the user what information exactly they have provided is wrong
+                In regard to this custom keep responses to a minimum and do not seperate information about username or password
+                */
+                switch (msg) {
+                  /*
+                  This case could be one word and a custom message could be set to $('modalLogin p').html in response
+                  Example:
+                  case 'error':
+                    $('#modalLogin .err').html('Incorrect username or password.')
+                      .fadeIn()
+                      .delay(1500)
+                      .fadeOut()
+                    break;
+                  */
+                  case 'Incorrect username or password.':
+                    $('#response').html(msg)
+                      .fadeIn(function returnSubmitControl() {
+                        /* User input has been handled so return control to the user and reset the submission button */
+                        $('#submitHotfix').prop('disabled', false)
+                          .html('Submit');
+                      })
+                      .delay(1500)
+                      .fadeOut();
+                    break;
+                  default:
+                    /*
+                    A login response will contain three parameters in a string:
+                    'msg;redirecton;cookie,key,value,domain,path,expiry'
+                    'Welcome DynamicNameHere!;/account;id,654654,grappl.io,/,0'
+                    In the case that domain, path, or expiry are not provided they will be automatically set
+                    */
+                    var arr = msg.split(';');
+                    msg = arr[0]; /* Set msg to actual message from response */
+                    var r = arr[1] /* Set r to redirecton page provided in response */
+                    var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
+                    var cK = cArr[0]; /* Set cK to cookie key provided in response */
+                    var cV = cArr[1]; /* Set cV to cookie value provided in response */
+                    var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
+                    var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
+                    var cT = cArr[4] || 0; /* Set cT to cookie decay time provided in response or 0*/
+                    /* Set cT to a proper decay time format */
+                    if(cT) {
+                      var d = new Date();
+                      d.setTime(d.getTime() + (cT*24*60*60*1000));
+                      cT = "expires " + d.toUTCString();
+                    }
+                    $('#response').html(msg)
+                      .fadeIn()
+                      .delay(1000, function CBLogin() {
+                        document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
+                        window.location.href = r; /* Redirect user */
+                      });
+                }
+              },
+              error: function submitLoginError() {
+                $('#response').html('Connection error. Please try again or <a href="mailto:matt@daexsys.com">contact us</a>.')
+                  .fadeIn(function returnSubmitControl() {
+                    /* User input has been handled so return control to the user and reset the submission button */
+                    $('#submitHotfix').prop('disabled', false)
+                      .html('Submit');
+                  })
+                  .delay(1500)
+                  .fadeOut();
+              }
+            });
+          });
+    </script>
