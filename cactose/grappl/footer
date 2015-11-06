@@ -15,22 +15,33 @@
     Placed at the end of the document so the page loads faster -->
     <!-- jQuery CDN Fallback-->
     <script src='//code.jquery.com/jquery-2.1.4.min.js'></script>
-    <script>window.jQuery || document.write('<script src='/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="/res/vendor/jquery-2.1.4.min.js"><\/script>')</script>
 
     <!-- BootstrapJS CDN Fallback -->
     <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-    <script>window.jQuery.fn.modal || document.write('<script src='/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
+    <script>window.jQuery.fn.modal || document.write('<script src="/res/vendor/bootstrap-3.3.5-dist/js/bootstrap.min.js"><\/script>')</script>
     <script>
       (function jQueryAlias($) {
         $(document).ready(function onReady() {
           /* BootstrapCSS CDN Fallback */
           if ($('html').css('font-family') !== 'sans-serif') {
-              $('head').append('<link rel="stylesheet" href='/res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css">');
+              $('head').append('<link rel="stylesheet" href="/res/vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css">');
           }
 
           /* Functions */
+          function submitOnEnter(event, t) { /* Form submission by pressing 'Enter' is limited till it is processed with this function and some event listeners */
+            if (event.key === 'Enter' || event.which === 13) { /* Backwards compatibility for browsers that have not switched to event.key yet /*
+              console.log(t);
+              if (t === 'register') {
+                Ajax.register(event);
+              }
+              else if (t === 'login') {
+                Ajax.login(event);
+              }
+            }
+          }
           Ajax = {
-            parse: function ajaxParse(msg) {
+            parse: function ajaxParse(elem, msg) {
               /*
               A response will contain three parameters in a string:
               'msg;redirecton;cookie,key,value,domain,path,expiry'
@@ -43,18 +54,18 @@
               var cArr = arr[2].split(','); /* Set cArr to cookie provided in response */
               var cK = cArr[0]; /* Set cK to cookie key provided in response */
               var cV = cArr[1]; /* Set cV to cookie value provided in response */
-              var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or null*/
-              var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/'*/
-              var cT = cArr[4] || 0; /* Set cT to cookie expiry provided in response or 0*/
+              var cD = cArr[2] || 'grappl.io'; /* Set cD to cookie domain provided in response or grappl.io */
+              var cP = cArr[3] || '/'; /* Set cP to cookie path provided in response or '/' */
+              var cT = cArr[4] || 0; /* Set cT to cookie expiry provided in response or 0 */
               /* Set cT to a proper expiry format */
               if (cT) {
                 var d = new Date();
                 d.setTime(d.getTime() + (cT*24*60*60*1000));
                 cT = "expires " + d.toUTCString();
               }
-              $('#modalRegister .ajaxRes').html(msg)
+              $(elem).html(msg)
                 .fadeIn()
-                .delay(1000, function CBLogin() {
+                .delay(1000, function parseCB() {
                   document.cookie = cK + '=' + cV + '; ' + cT + '; domain=' + cD + '; path=' + cP; /* Set user cookie */
                   window.location.href = r; /* Redirect user */
                 });
@@ -71,10 +82,16 @@
                   if (elem === '#modalRegister .ajaxRes') {
                     $('#submitRegister').prop('disabled', false)
                       .html('Submit');
+                    $('#modalRegister input').on('keydown', function submitOnLoginEnter(event) {
+                      submitOnEnter(event, 'register');
+                    });
                   }
                   else if (elem === '#modalLogin .ajaxRes') {
                     $('#submitLogin').prop('disabled', false)
                       .html('Submit');
+                    $('#modalLogin input').on('keydown', function submitOnLoginEnter(event) {
+                      submitOnEnter(event, 'login');
+                    });
                   }
                 })
                 .delay(1500)
@@ -82,9 +99,10 @@
             },
             register: function ajaxRegister(event) {
               event.preventDefault();
-              /* Confirm that user input is being handled and disable button till user input is processed */
+              /* Confirm that user input is being handled and disable button and further input till current user input is processed */
               $('#submitRegister').prop('disabled', true)
                 .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+              $('#modalRegister input').off('keydown');
               $.ajax({
                 type: 'POST',
                 url: '/registerhandler',
@@ -105,16 +123,8 @@
                       Ajax.res('modalRegister .ajaxRes', msg);
                       break;
                     default:
-                      Ajax.parse(msg);
+                      Ajax.parse('#modalRegister .ajaxRes', msg);
                   }
-                  $('#modalRegister .ajaxRes').html(msg)
-                    .fadeIn(function returnSubmitControl() {
-                      /* User input has been handled so return control to the user and reset the submission button */
-                      $('#submitRegister').prop('disabled', false)
-                        .html('Submit');
-                    })
-                    .delay(1500)
-                    .fadeOut();
                 },
                 error: function ajaxRegisterErr() {
                   Ajax.res('#modalRegister .ajaxRes');
@@ -123,9 +133,10 @@
             },
             login: function ajaxLogin(event) {
               event.preventDefault();
-              /* Confirm that user input is being handled and disable button till user input is processed */
+              /* Confirm that user input is being handled and disable button and further input till current user input is processed */
               $('#submitLogin').prop('disabled', true)
                 .html('<span class="glyphicon glyphicon-refresh spin"></span> Submitting...');
+              $('#modalLogin input').off('keydown');
               $.ajax({
                 type: 'POST',
                 url: '/auth',
@@ -147,7 +158,7 @@
                       Ajax.res('#modalLogin .ajaxRes', msg);
                       break;
                     default:
-                      Ajax.parse(msg);
+                      Ajax.parse('#modalLogin .ajaxRes', msg);
                   }
                 },
                 error: function ajaxLoginErr() {
@@ -158,14 +169,14 @@
           }
 
           /* Event Listeners */
-          $('#btnDonate, #btnTesterDonate').click(function clickDonate(event) {
+          $('#btnDonate, #btnTesterDonate').on('click', function clickDonate(event) {
             event.preventDefault();
             $('#modalDonate').modal('show');
           });
           $('#modalDonate').on('shown.bs.modal', function modalDonateFocus() {
             $('#inputDonate').focus();
           });
-          $('#btnRegister').click(function clickRegister(event) {
+          $('#btnRegister').on('click', function clickRegister(event) {
             event.preventDefault();
             $('#modalRegister').modal('show');
           });
@@ -173,7 +184,7 @@
             $('#modalRegister input').first()
               .focus();
           })
-          $('#btnLogin').click(function clickLogin(event) {
+          $('#btnLogin').on('click', function clickLogin(event) {
             event.preventDefault();
             $('#modalLogin').modal('show');
           });
@@ -184,7 +195,7 @@
 
           var capsStatus = null; /* Used to verify state of Caps Lock key */
           $('#modalRegister input, #modalLogin input').on('keypress', function modalCapsTest(event) {
-            var s = event.key || String.fromCharCode(event.which); // Backwards compatibility for browsers that have not switched to event.key yet
+            var s = event.key || String.fromCharCode(event.which); /* Backwards compatibility for browsers that have not switched to event.key yet */
             if ((s.toUpperCase() === s && s.toLowerCase() !== s && !event.shiftKey) ||
             (s.toUpperCase() !== s && s.toLowerCase() === s && event.shiftKey)) {
               capsStatus = true;
@@ -198,9 +209,9 @@
               .hide();
             }
           });
-          $(document).keydown(function documentCapsTest(event){
+          $(document).on('keydown', function documentCapsTest(event){
             /* If Caps Lock key is pressed test to see if state has yet been determined */
-            if (event.key === 'CapsLock' || event.which == 20) { // Backwards compatibility for browsers that have not switched to event.key yet
+            if (event.key === 'CapsLock' || event.which == 20) { /* Backwards compatibility for browsers that have not switched to event.key yet */
               if (typeof(capsStatus) === 'boolean'){
                 if (capsStatus === true) {
                   capsStatus = false;
@@ -215,7 +226,7 @@
               }
             }
           });
-          $(window).blur(function windowCapsTest(){
+          $(window).on('blur', function windowCapsTest(){
             /* If window is inactive then status of Caps Lock key is indeterminate */
             if (typeof(capsStatus) === 'boolean') {
               capsStatus = null;
@@ -223,25 +234,20 @@
             }
           });
 
-          $('#license').click(function clickLicense(event) {
+          $('#license').on('click', function clickLicense(event) {
             event.preventDefault();
             $('#modalLicense').modal('show');
           });
-          $('#modalRegister input').keydown(function submitRegisterEnter(event) {
-            if (event.key === 'Enter' || event.which === 13) { // Backwards compatibility for browsers that have not switched to event.key yet
-              event.preventDefault();
-              Ajax.register(event);
-            }
+          $('#modalRegister input').on('keydown', function submitRegisterOnEnter(event) {
+            submitOnEnter(event, 'register');
           });
-          $('#submitRegister').click(function submitRegisterClick(event) {
+          $('#submitRegister').on('click', function submitRegisterOnClick(event) {
             Ajax.register(event);
           });
-          $('#modalLogin input').keydown(function submitLoginEnter(event) {
-            if (event.key === 'Enter' || event.which === 13) { // Backwards compatibility for browsers that have not switched to event.key yet
-              Ajax.login(event);
-            }
+          $('#modalLogin input').on('keydown', function submitLoginOnEnter(event) {
+            submitOnEnter(event, 'login');
           });
-          $('#submitLogin').click(function submitLoginClick(event) {
+          $('#submitLogin').on('click', function submitLoginOnClick(event) {
             Ajax.login(event);
           });
         });
