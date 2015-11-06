@@ -1,8 +1,8 @@
 why waste a normal user's time querying backend when frontend js could provide errors about:
-passwords do not match - backend responds with page detailing error
+passwords do not match - backend parses passwords and sends a response back
 empty password or username - backend hangs eternally
 
-application links to /register. consider loading modal through a get request or getting rid of modals and using actual pages? using both means modifying two or more places of code if one instance changes
+application links to /register and /donate. consider loading modal through window.location.href
 
 MOAR STYLING
  - fix banner underlining and collapsing and dropdowns
