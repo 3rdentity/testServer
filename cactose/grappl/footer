@@ -30,7 +30,7 @@
 
           /* Functions */
           function submitOnEnter(event, t) { /* Form submission by pressing 'Enter' is limited till it is processed with this function and some event listeners */
-            if (event.key === 'Enter' || event.which === 13) { /* Backwards compatibility for browsers that have not switched to event.key yet /*
+            if (event.key === 'Enter' || event.which === 13) { /* Backwards compatibility for browsers that have not switched to event.key yet */
               console.log(t);
               if (t === 'register') {
                 Ajax.register(event);
