@@ -5,7 +5,7 @@ empty password or username - backend hangs eternally
 application links to /register and /donate. consider loading modal through window.location.href
 
 MOAR STYLING
- - fix banner underlining and collapsing and dropdowns
+ - fix banner underlining and dropdowns
  - /index seems compressed
  - /account and /testerAccount are very empty and need more styling
  - /servers needs to actually be stylized

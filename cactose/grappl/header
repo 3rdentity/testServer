@@ -6,7 +6,8 @@
 
     <meta charset='utf-8'>
     <meta name='author' content='cactose + shasharala'>
-    <meta name='description' content=''>
+    <meta name='description' content='Grappl is a tool that lets you host virtually any type of server anywhere, with no port forwarding'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic'>
     <link rel='icon' type='image/x-icon' href='//grappl.io:888/html/grapplicon.ico'>
     <link rel='stylesheet' type='text/css' href='/res/vendor/normalize.min.css'>
