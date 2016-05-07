@@ -1,5 +1,5 @@
             <li class='dropdown'>
-              <a class='nav-underline' role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
+              <a role='button' class='dropdown-toggle' href='javascript:void(0)' data-toggle='dropdown' aria-expanded='false'>
                 <span class='glyphicon glyphicon-user'></span> <!-- Dyn_username -->
                 <span class='caret'></span>
               </a>
