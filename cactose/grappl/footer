@@ -169,6 +169,7 @@
           }
 
           /* Event Listeners */
+          /*
           $('#btnDonate, #btnTesterDonate').on('click', function clickDonate(event) {
             event.preventDefault();
             $('#modalDonate').modal('show');
@@ -176,6 +177,7 @@
           $('#modalDonate').on('shown.bs.modal', function modalDonateFocus() {
             $('#inputDonate').focus();
           });
+          */
           $('#btnRegister').on('click', function clickRegister(event) {
             event.preventDefault();
             $('#modalRegister').modal('show');
