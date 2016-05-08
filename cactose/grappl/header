@@ -35,8 +35,10 @@
             <p>You can donate any amount you want, any help is appreciated!</p>
             <p>If you donate $8 or more and include your username you will be able to Beta test new features, like static ports, which let you keep the same address every time you start Grappl.</p>
             <p>(Beta Tester status has to be applied manually, so it will take a small amount of time to show up.)</p>
+-->
             <!-- PayPal Form -->
-            <form method='post' role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
+<!--
+              <form method='post' role='form' action='//www.paypal.com/cgi-bin/webscr' method='post' target='_top'>
               <input type='hidden' name='cmd' value='_donations' />
               <input type='hidden' name='business' value='8U9DK42DS2US2' />
               <input type='hidden' name='lc' value='US' />
